@@ -4,15 +4,15 @@ import Thread from "../components/Thread";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 
-export default function ChatThreads() {
+export default function UserThreads() {
     const [threadData, setThreadData] = useState([]);
-
+    
     useEffect(() => {
         getThreadData();
     }, [])
 
     const getThreadData = () => {
-        // api call
+        // [GET] api call to fetch info about other user's thread
         setThreadData([
             {
                 title: "Title 1",
@@ -36,8 +36,11 @@ export default function ChatThreads() {
             <h1>{user.name}'s Threads</h1>
             <Button variant="contained">Return to Profile</Button>
 
-            {threadData.map((thread, i) => {
-                return (<Thread threadInfo={thread}/>)
+            {threadData && threadData.map((thread, i) => {
+                return (<Thread 
+                    key={i}
+                    threadInfo={thread} 
+                />)
             })}
         </Container>
     )

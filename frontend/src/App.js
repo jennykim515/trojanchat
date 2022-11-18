@@ -1,6 +1,6 @@
 import './App.css';
 import { createContext, useState } from "react"
-import ChatThreads from './pages/ChatThreads';
+import UserThreads from './pages/ChatThreads';
 
 export const AppContext = createContext(null)
 
@@ -16,7 +16,7 @@ function App() {
   return (
     <AppContext.Provider value={{ user, setUser }}>
       {/* add components */}
-      <ChatThreads />
+      <UserThreads />
     </AppContext.Provider>
   );
 }
