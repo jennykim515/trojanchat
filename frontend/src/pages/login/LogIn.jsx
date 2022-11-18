@@ -18,6 +18,8 @@ export default function LogIn() {
                         onChange={(e) => setUsername(e.target.value)} 
                         marginBottom="10px"/>
             </label>
+            <br/>
+            <br/>
             <label> Password: 
                 <input 
                         type="text" 
