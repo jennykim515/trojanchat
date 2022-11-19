@@ -62,7 +62,7 @@ export default function SignUp() {
             noValidate
             autoComplete="off"
         >
-        <TextField id="outlined-basic"  name="password_repeat" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
+        <TextField id="outlined-basic" name="password_repeat" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
         </Box>
         {incorrectEmail ?  <p className="incorrectEntry"> please use USC email</p> : null}
 
@@ -85,7 +85,7 @@ export default function SignUp() {
             noValidate
             autoComplete="off"
         >
-       <TextField id="outlined-basic" name="password_repeat" label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
+       <TextField id="outlined-basic"  type={"password"} name="password_repeat" label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
         </Box>
 
         <Box
@@ -96,7 +96,7 @@ export default function SignUp() {
             noValidate
             autoComplete="off"
         >
-        <TextField id="outlined-basic" name="password_repeat" label="Confirm Password" variant="outlined" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} required /> 
+        <TextField id="outlined-basic"   type={"password"} name="password_repeat" label="Confirm Password" variant="outlined" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} required /> 
         </Box>
         {passwordMatch ? null : <p className="incorrectEntry"> *passwords do not match</p>}
          {enableSubmit ? <Button variant="contained" type="submit" onClick={() => handleSubmit()} style={{backgroundColor: "#6A1F1F"}}> Sign Up </Button> : <Button variant="contained" type="submit" onClick={() => handleSubmit()} style={{backgroundColor: "#6A1F1F"}} disabled> Sign Up </Button>}
