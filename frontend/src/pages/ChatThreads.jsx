@@ -4,6 +4,9 @@ import Thread from "../components/Thread";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 
+/*
+    Displays all of User's Threads
+*/
 export default function UserThreads() {
     const [threadData, setThreadData] = useState([]);
     
