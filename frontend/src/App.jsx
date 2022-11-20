@@ -4,6 +4,10 @@ import { createContext, useState } from "react"
 import { BrowserRouter, MemoryRouter as Router, Route, Routes} from 'react-router-dom';
 import LogIn from './pages/login/LogIn';
 import SignUp from './pages/signup/SignUp';
+import MainNavigation from './pages/MainNavigation'
+import School
+ from './components/School';
+import SchoolSpecificThread from './pages/SchoolSpecificThread';
 export const AppContext = createContext(null)
 
 function App() {
@@ -23,6 +27,10 @@ function App() {
         <Routes>
             <Route path='/login' element={<LogIn/>}> </Route>
             <Route path='/signup' element={<SignUp/>}> </Route>
+            
+            {/* If signed in */}
+            <Route path='' element={<MainNavigation />} />
+            <Route path='/:school' element={<SchoolSpecificThread />} />
         </Routes>
      </BrowserRouter> 
     </AppContext.Provider>

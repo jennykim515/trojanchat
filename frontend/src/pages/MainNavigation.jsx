@@ -41,7 +41,7 @@ export default function MainNavigation() {
             <h1>USC</h1>
             {schools.map((schoolData, i) => {
                 return (
-                    <School schoolInfo={schoolData} onClick={ console.log("Meep")}/>
+                    <School schoolInfo={schoolData} />
                 )
             })}
 
