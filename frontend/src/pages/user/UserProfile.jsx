@@ -59,7 +59,6 @@ export default function UserProfile() {
          <tr>
              <td>Email: </td>
              <td>
-                 {/*if statement is here*/}
                  {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
              </td>
          </tr>
@@ -71,7 +70,7 @@ export default function UserProfile() {
                  <input type="text" onclick={{}}/>
              </td>
          </tr>
-         <input type="text" value/>
+         
          <tr>
              <td>
                 Graduation Year:
@@ -80,7 +79,7 @@ export default function UserProfile() {
                  <input type="text" onclick={{}}/>
              </td>
          </tr>
-         <input type="text" value/>
+        
 
          <Button onclick={{}}>Save Changes</Button>
      </table>
