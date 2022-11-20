@@ -1,0 +1,24 @@
+.menucontainer{
+    display: flex;
+    min-width: 300px;
+    width: 100%;
+    max-width: 45%;
+    height: 100%;
+    background-color: #FFD25F;
+}
+
+.topmenucontainer{
+    display: flex;
+    height: 10px;
+    width: 100%;
+}
+
+.menubuttoncontainer{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    flex: space-between;
+    justify-content: center;
+    align-items: right;
+}
+
