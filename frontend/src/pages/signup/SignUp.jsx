@@ -6,8 +6,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "../signup/SignUp.css"
 
-
-
+//maybe add is loading feature 
+//add navbar component later 
 export default function SignUp() {
     const [email, setEmail] = React.useState(''); 
     const [username, setUsername] = React.useState('');
@@ -62,7 +62,7 @@ export default function SignUp() {
             noValidate
             autoComplete="off"
         >
-        <TextField id="outlined-basic" name="password_repeat" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
+        <TextField id="outlined-basic" name="email" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} required /> 
         </Box>
         {incorrectEmail ?  <p className="incorrectEntry"> please use USC email</p> : null}
 
