@@ -48,7 +48,9 @@ export default function UserProfile() {
 
   return (
     <Container>
-      <h1 className="title">ReactJS Editable Table</h1>
+      <h1 className="title">User Profile</h1>
+      <d1>Double click on text to edit major or graduation year </d1>
+      
      <table>
          <tr>
              <td>Username: </td>
@@ -64,6 +66,15 @@ export default function UserProfile() {
          <tr>
              <td>
                 Major:
+             </td>
+             <td>
+                 <input type="text" onclick={{}}/>
+             </td>
+         </tr>
+         <input type="text" value/>
+         <tr>
+             <td>
+                Graduation Year:
              </td>
              <td>
                  <input type="text" onclick={{}}/>
