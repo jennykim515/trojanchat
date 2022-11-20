@@ -27,7 +27,8 @@ export default function MainNavigation() {
             },
             {
                 school: "Viterbi",
-                numThreads: 305
+                numThreads: 305,
+                
             },
 
         ]);
@@ -40,7 +41,7 @@ export default function MainNavigation() {
             <h1>USC</h1>
             {schools.map((schoolData, i) => {
                 return (
-                    <School schoolInfo={schoolData} />
+                    <School schoolInfo={schoolData} onClick={ console.log("Meep")}/>
                 )
             })}
 

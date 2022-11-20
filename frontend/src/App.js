@@ -2,6 +2,8 @@ import './App.css';
 import { createContext, useState } from "react"
 import UserThreads from './pages/ChatThreads';
 import MainNavigation from './pages/MainNavigation';
+import SchoolDiscussionBoard from './pages/SchoolDiscussionBoard';
+import School from './components/School';
 
 export const AppContext = createContext(null)
 
@@ -19,6 +21,8 @@ function App() {
       {/* add components */}
       {/* <UserThreads /> */}
       <MainNavigation />
+      {/* <SchoolDiscussionBoard /> */}
+      {/* <School /> */}
     </AppContext.Provider>
   );
 }
