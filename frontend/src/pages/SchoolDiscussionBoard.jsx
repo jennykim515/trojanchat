@@ -1,21 +1,20 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useNavigate } from "react";
 import { AppContext } from '../App'
 import Thread from "../components/Thread";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 
 /*
-    Displays all of User's Threads
+    Displays all threads of school
 */
-export default function UserThreads() {
+export default function SchoolDiscussionBoard(props) {    
     const [threadData, setThreadData] = useState([]);
-    
+
     useEffect(() => {
         getThreadData();
     }, [])
-
     const getThreadData = () => {
-        // [GET] api call to fetch info about other user's thread
+        // [GET] api call to fetch info about threads in this school
         setThreadData([
             {
                 title: "Title 1",
@@ -32,12 +31,11 @@ export default function UserThreads() {
 
         ]);
     }
-    const { user } = useContext(AppContext)
-    console.log(user);
+    // const { user } = useContext(AppContext)
+    // console.log(user);
     return (
         <Container>
-            <h1>{user.name}'s Threads</h1>
-            <Button variant="contained">Return to Profile</Button>
+            <h1>USC</h1>
 
             {threadData && threadData.map((thread, i) => {
                 return (<Thread 
