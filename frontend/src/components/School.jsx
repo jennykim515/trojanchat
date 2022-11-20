@@ -2,20 +2,21 @@ import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import { useNavigate } from "react-router-dom";
 
-
+/*
+    props: {boardName, threadCount}
+*/
 const School = (props) => {
-    console.log(props);
     const navigate = useNavigate();
 
     const schoolInfo = props.schoolInfo
     return (
         <Card variant="outlined">
-            <h2>{schoolInfo.school}</h2>
-            {/* <p>by {schoolInfo.username}</p> */}
+            <h2>{schoolInfo.boardName}</h2>
+            <p>Thread Count: {schoolInfo.threadCount}</p>
             <Button 
                 variant="outlined"
                 onClick={() => {
-                    navigate(`/${schoolInfo.school}`);
+                    navigate(`/${schoolInfo.boardName}`);
                 }}
             >View More</Button>
         </Card>

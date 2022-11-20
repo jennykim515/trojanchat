@@ -21,6 +21,7 @@ function App() {
   // })
 
   return (
+
     <>
     <AppContext.Provider value={{ user, setUser }}>
      <BrowserRouter> 
@@ -31,6 +32,7 @@ function App() {
             {/* If signed in */}
             <Route path='' element={<MainNavigation />} />
             <Route path='/:school' element={<SchoolSpecificThread />} />
+            
         </Routes>
      </BrowserRouter> 
     </AppContext.Provider>
