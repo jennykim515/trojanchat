@@ -1,8 +1,8 @@
 import './App.css';
-import { createContext, useState } from "react"
+import React, { createContext, useState } from "react"
 import UserThreads from './pages/ChatThreads';
-//import {UserProfile } from  './pages/user/UserProfile';
-import { UserProfile2}  from './pages/user/UserProfile2';
+import UserProfile2 from "./pages/user/UserProfile2";
+import UserProfile from "./pages/user/UserProfile";
 
 export const AppContext = createContext(null)
 
@@ -14,16 +14,19 @@ function App() {
     grad: "2024",
     password: "password"
   })
+
 //need to add react-router
   return (
     <AppContext.Provider value={{ user, setUser }}>
       {/* add components */}
-  
-
-      <UserProfile2/>
-    
+      <>
+        <UserThreads/>
+        <UserProfile/>
+      </>
     </AppContext.Provider>
   );
 }
 
 export default App;
+
+

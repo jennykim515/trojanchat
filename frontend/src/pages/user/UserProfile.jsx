@@ -1,87 +1,82 @@
 import { useState, useContext, useEffect } from "react";
-import { AppContext } from '../App'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 
-
-const data = [
-  {
+const data = {
     employeeId:'01',
     username: 'John Doe',
     email: 'johndoe@email.com',
     major: 'Frontend Developer',
     graduation: 'something'
-  },
-]
-export default function UserProfile() {
-  const [employeeData, setEmployeeData] = useState(data)
-
-  const onChangeInput = (e, employeeId) => {
-    const { username, value } = e.target
-
-    const editData = employeeData.map((item) =>
-      item.employeeId === employeeId && username ? { ...item, [username]: value } : item
-    )
-
-    setEmployeeData(editData)
   }
 
+export default function UserProfile() {
+
+    // fetch('http://example.com/movies.json')
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //
+    //         //data is here
+    //         //const [data, setData] = useState(data)
+    //
+    //     });
+
+  const [employeeData, setEmployeeData] = useState(data)
+
+    const [emailInput, setEmailInput] = useState(true)
+    const [emailValue, setEmailValue] = useState('')
+
+  // const onChangeInput = (e, employeeId) => {
+  //   const { username, value } = e.target
+  //
+  //   const editData = employeeData.map((item) =>
+  //     item.employeeId === employeeId && username ? { ...item, [username]: value } : item
+  //   )
+  //
+  //   setEmployeeData(editData)
+  // }
+    function formHander(){
+      //save form
+
+    }
+    function toggleEmail() {
+        setEmailInput(!emailInput)
+
+    }
+
+    console.log('data',data)
+
   return (
-    <div className="container">
+    <Container>
       <h1 className="title">ReactJS Editable Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Username:</th>
-            <th>Email:</th>
-            <th>Major:</th>
-            <th>Graduation Year:</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employeeData.map(({ employeeId, username, email, major, graduation }) => (
-            <tr key={employeeId}>
-              <td>
-                <input
-                  name="username"
-                  value={username}
-                  type="text"
-                  onChange={(e) => onChangeInput(e, employeeId)}
-                  placeholder="Type Username"
-                />
-              </td>
-              <td>
-                <input
-                  name="email"
-                  value={email}
-                  type="text"
-                  onChange={(e) => onChangeInput(e, employeeId)}
-                  placeholder="Type Email"
-                />
-              </td>
-              <td>
-                <input
-                  name="major"
-                  type="text"
-                  value={major}
-                  onChange={(e) => onChangeInput(e, employeeId)}
-                  placeholder="Type Major"
-                />
-              </td>
-              <td>
-                <input
-                  name="graduation"
-                  type="text"
-                  value={graduation}
-                  onChange={(e) => onChangeInput(e, employeeId)}
-                  placeholder="Type Graduation Year"
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+     <table>
+         <tr>
+             <td>Username: </td>
+             <td>{data.username}</td>
+         </tr>
+         <tr>
+             <td>Email: </td>
+             <td>
+                 {/*if statement is here*/}
+                 {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
+             </td>
+         </tr>
+         <tr>
+             <td>
+                Major:
+             </td>
+             <td>
+                 <input type="text" onclick={{}}/>
+             </td>
+         </tr>
+         <input type="text" value/>
+
+         <Button onclick={{}}>Save Changes</Button>
+     </table>
+
+      <br/>
+      <br/><br/><br/><br/><br/>
+    </Container>
   )
 }
 
