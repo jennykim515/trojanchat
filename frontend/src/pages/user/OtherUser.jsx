@@ -49,7 +49,8 @@ export default function UserProfile() {
   return (
     <Container>
       <h1 className="title">User Profile</h1>
-      <d1>Double click on text to edit major or graduation year. </d1>
+      <h1>{user.name}'s Threads</h1>
+      <d1>Double click on text to edit major or graduation year </d1>
       
      <table>
          <tr>

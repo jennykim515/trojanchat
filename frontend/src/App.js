@@ -1,9 +1,8 @@
 import './App.css';
 import React, { createContext, useState } from "react"
 import UserThreads from './pages/ChatThreads';
-import UserProfile2 from "./pages/user/UserProfile2";
 import UserProfile from "./pages/user/UserProfile";
-
+import OtherUserProfile from "./pages/user/OtherUser";
 export const AppContext = createContext(null)
 
 function App() {
@@ -22,6 +21,7 @@ function App() {
       <>
         <UserThreads/>
         <UserProfile/>
+        <OtherUserProfile/>
       </>
     </AppContext.Provider>
   );
