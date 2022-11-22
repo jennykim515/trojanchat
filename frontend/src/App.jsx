@@ -8,6 +8,7 @@ import MainNavigation from './pages/MainNavigation'
 import School
  from './components/School';
 import SchoolSpecificThread from './pages/SchoolSpecificThread';
+import Navbar from './components/navbar/navbar';
 export const AppContext = createContext(null)
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
     <>
     <AppContext.Provider value={{ user, setUser }}>
+      <Navbar />
      <BrowserRouter> 
         <Routes>
             <Route path='/login' element={<LogIn/>}> </Route>
