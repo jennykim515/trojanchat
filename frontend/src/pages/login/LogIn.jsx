@@ -22,7 +22,7 @@ export default function LogIn() {
         </div>
         <div id="curvedInfoBox"> <p>An online forum platform designed for USC students, by USC students. Trojan Chats is a hub for USC-related questions, discussions, and networking opportunities. Free for all USC Trojans. </p> </div>
         <div id="LogIn">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form id="logInForm" onSubmit={(e) => handleSubmit(e)}>
             <Box
             component="form"
             sx={{

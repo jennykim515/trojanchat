@@ -57,16 +57,20 @@
   
 }
 
+#logInForm{
+    margin-top: 2vh;
+}
+
 #or{
     margin-left: 5vh;
     margin-right: 5vh;
     font-family: 'Helvetica Neue';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 #span2{
-    margin-top: 5vh;
+    margin-top: 4vh;
     display:inline-flex;
 
 }
