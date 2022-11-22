@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
     const threadinfo = props.threadInfo
+
     return (
         <Card variant="outlined">
             <h2>{threadinfo.title}</h2>

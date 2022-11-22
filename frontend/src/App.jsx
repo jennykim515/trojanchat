@@ -4,12 +4,14 @@ import { createContext, useState } from "react"
 import { BrowserRouter, MemoryRouter as Router, Route, Routes} from 'react-router-dom';
 import LogIn from './pages/login/LogIn';
 import SignUp from './pages/signup/SignUp';
+import UserProfile from "./pages/user/UserProfile";
 import MainNavigation from './pages/MainNavigation'
 import School
- from './components/School';
+from './components/School';
 import SchoolSpecificThread from './pages/SchoolSpecificThread';
 import Navbar from './components/navbar/navbar';
 import { internal_apiGet, internal_apiPost } from './utils/network';
+import OtherUser from "./pages/user/OtherUser";
 
 export const AppContext = createContext({});
 
@@ -78,17 +80,20 @@ function App() {
   return (
     <AppContext.Provider value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}>
       <Navbar />
-      <BrowserRouter> 
-          <Routes>
-              <Route path='/login' element={<LogIn/>}> </Route>
-              <Route path='/signup' element={<SignUp/>}> </Route>
-              
-              {/* If signed in */}
-              <Route path='' element={<MainNavigation />} />
-              <Route path='/:school' element={<SchoolSpecificThread />} />
-              
-          </Routes>
-      </BrowserRouter> 
+     <BrowserRouter> 
+        <Routes>
+            <Route path='/login' element={<LogIn/>}> </Route>
+            <Route path='/signup' element={<SignUp/>}> </Route>
+            
+            {/* If signed in */}
+            <Route path='' element={<MainNavigation />} />
+            <Route path='/:school' element={<SchoolSpecificThread />} />
+
+            <Route path={'/profile'} element={<UserProfile/>}></Route>
+            <Route path={'/otheruser'} element={<OtherUser/>}></Route>
+            
+        </Routes>
+     </BrowserRouter> 
     </AppContext.Provider>
   );
 }
