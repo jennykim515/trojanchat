@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
@@ -9,7 +10,6 @@ body {
 .navbarcontainer {
     width:100%;
     height: 90px;
-    position: fixed;
     background-color: #6A1F1F;
     box-shadow: 0 1px 3px #323232;
     display: flex;
