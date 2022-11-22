@@ -17,7 +17,7 @@ export default function LogIn() {
         <div id="welcomeDropDown"> 
             <span id="span">
                 <div id="logoCircle"> <p>logo here </p></div>
-                <p> Trojan Chats </p> 
+                <p id="TrojanChats"> Trojan Chats </p> 
             </span>  
         </div>
         <div id="curvedInfoBox"> <p>An online forum platform designed for USC students, by USC students. Trojan Chats is a hub for USC-related questions, discussions, and networking opportunities. Free for all USC Trojans. </p> </div>

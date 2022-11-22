@@ -26,7 +26,10 @@
 
 #span{
     display:inline-flex;
+}
 
+#TrojanChats{
+    margin-top: 10vh;
 }
 
 #curvedInfoBox{
