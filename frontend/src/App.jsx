@@ -8,6 +8,7 @@ import MainNavigation from './pages/MainNavigation'
 import School
  from './components/School';
 import SchoolSpecificThread from './pages/SchoolSpecificThread';
+import Navbar from './components/navbar/navbar';
 import { internal_apiGet, internal_apiPost } from './utils/network';
 
 export const AppContext = createContext({});
@@ -76,6 +77,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}>
+      <Navbar />
       <BrowserRouter> 
           <Routes>
               <Route path='/login' element={<LogIn/>}> </Route>
