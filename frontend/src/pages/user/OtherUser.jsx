@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
-
+import { AppContext } from '../../App'
 
 const data = {
     employeeId:'01',
@@ -11,57 +11,50 @@ const data = {
     graduation: 'something'
   }
 
-export default function UserProfile() {
-
-    // fetch('http://example.com/movies.json')
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //
-    //         //data is here
-    //         //const [data, setData] = useState(data)
-    //
-    //     });
+export default function OtherUser({props}) {
 
   const [employeeData, setEmployeeData] = useState(data)
 
-    const [emailInput, setEmailInput] = useState(true)
-    const [emailValue, setEmailValue] = useState('')
+    const [emailInput, setEmailInput] = useState(true) //thi shide/show inputfield
+    const [emailValue, setEmail] = useState(data.email)
+    const [majorValue, setMajor] = useState('')
+    const [gradValue, setGrad] = useState('')
+    const [usernameValue, setUsername] = useState(data.username)
 
-  // const onChangeInput = (e, employeeId) => {
-  //   const { username, value } = e.target
-  //
-  //   const editData = employeeData.map((item) =>
-  //     item.employeeId === employeeId && username ? { ...item, [username]: value } : item
-  //   )
-  //
-  //   setEmployeeData(editData)
-  // }
-    function formHander(){
-      //save form
 
-    }
-    function toggleEmail() {
-        setEmailInput(!emailInput)
+/*    useEffect(()=> {
+         //tis will run when your page loads  
+         fetch('url')
+         .then( response => response.json())
+         .then(data => {
+          console.log('my data', data);
+         
+            setUsername(data.username)
+            setEmail(data.email)
+            setMajor(data.major)
+            setGrad(data.graduation)            
+         })
 
-    }
+    },[])
 
-    console.log('data',data)
+    */
+
+  const { user } = useContext(AppContext)
+
 
   return (
     <Container>
-      <h1 className="title">User Profile</h1>
-      
-      <d1>Double click on text to edit major or graduation year </d1>
-      
+      <h1>{user.name}'s Profile</h1>
+      <d1>Double click on text to edit major or graduation year. </d1>
      <table>
          <tr>
              <td>Username: </td>
-             <td>{data.username}</td>
+             <td>{usernameValue}</td>
          </tr>
          <tr>
              <td>Email: </td>
              <td>
-                 {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
+                 {emailValue}
              </td>
          </tr>
          <tr>
@@ -69,7 +62,7 @@ export default function UserProfile() {
                 Major:
              </td>
              <td>
-                 <input type="text" onclick={{}}/>
+                {majorValue}
              </td>
          </tr>
          
@@ -78,12 +71,9 @@ export default function UserProfile() {
                 Graduation Year:
              </td>
              <td>
-                 <input type="text" onclick={{}}/>
+              {gradValue}
              </td>
          </tr>
-        
-
-         <Button onclick={{}}>Save Changes</Button>
      </table>
 
       <br/>
