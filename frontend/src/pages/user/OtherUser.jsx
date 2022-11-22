@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 
+
 const data = {
     employeeId:'01',
     username: 'John Doe',
@@ -49,7 +50,7 @@ export default function UserProfile() {
   return (
     <Container>
       <h1 className="title">User Profile</h1>
-      <h1>{user.name}'s Threads</h1>
+      
       <d1>Double click on text to edit major or graduation year </d1>
       
      <table>
