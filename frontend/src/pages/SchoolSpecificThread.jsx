@@ -43,7 +43,7 @@ export default function SchoolSpecificThread() {
 
     return (
         <Container>
-            <h1>{school}</h1>
+            <h1  style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>{school}</h1>
             {schoolThreads.map((thread, i) => {
                 return (
                     <Thread threadInfo={thread} />

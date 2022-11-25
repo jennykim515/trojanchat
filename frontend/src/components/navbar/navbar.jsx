@@ -19,4 +19,17 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+const NavbarNoLinks = () => {
+    return(
+    <div className="navbarcontainer">
+        <div className="navbarleft"><Logo /></div>
+            <nav>
+            </nav>
+    </div>
+    )
+}
+
+export default Navbar; 
+export{ 
+    NavbarNoLinks
+}

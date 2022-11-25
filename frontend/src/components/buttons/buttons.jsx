@@ -17,7 +17,7 @@ export default function Button(props) {
             case BUTTONTYPE.RED:
                 return 'redButton';
             default:
-                return 'button';
+                return 'button'; /*not applicable but required*/
         }
     }
 
