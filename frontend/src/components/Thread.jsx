@@ -1,21 +1,21 @@
 import Card from '@mui/material/Card'
-import Button from '@mui/material/Button'
-
+import { CardActionArea } from '@mui/material'
+import './Thread.css';
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
     const threadinfo = props.threadInfo
 
     return (
         <Card variant="outlined">
-            <h2>{threadinfo.title}</h2>
-            <p>by {threadinfo.userName}</p>
-            <p>Time {threadinfo.timeCreated}</p>
-            <Button 
-                variant="outlined"
-                onClick={() => {
-                    // console.log("Clicked");
-                }}
-            >View More</Button>
+            <CardActionArea >
+            <div className="threads-container">
+                    <div className="thread-card-top"><h2>{threadinfo.title}</h2></div>
+                    <div className="thread-card-bottom">
+                        <div className="bottom-left"> <p>by {threadinfo.userName}</p></div>
+                        <div className="bottom-right"><p>Time {threadinfo.timeCreated}</p></div>
+                    </div>
+            </div>
+            </CardActionArea>
         </Card>
     )
 }
