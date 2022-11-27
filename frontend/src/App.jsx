@@ -12,6 +12,7 @@ import SchoolSpecificThread from './pages/SchoolSpecificThread';
 import Navbar from './components/navbar/navbar';
 import { internal_apiGet, internal_apiPost } from './utils/network';
 import OtherUser from "./pages/user/OtherUser";
+import CommentList from './pages/CommentList';
 
 export const AppContext = createContext({});
 
@@ -88,6 +89,8 @@ function App() {
             {/* If signed in */}
             <Route path='' element={<MainNavigation />} />
             <Route path='/:school' element={<SchoolSpecificThread />} />
+            <Route path='/:thread' element={<CommentList />} />
+
 
             <Route path={'/profile'} element={<UserProfile/>}></Route>
             <Route path={'/otheruser'} element={<OtherUser/>}></Route>
