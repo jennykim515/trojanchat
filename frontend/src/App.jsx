@@ -17,9 +17,11 @@ import CommentList from './pages/CommentList';
 export const AppContext = createContext({});
 
 const TOKEN_KEY = 'chatToken';
+const USER_ID = 'userID';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
+  const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
   const [user, setUser] = useState({});
   const myUserId = user?.id || "";
   // exampleUser: {
@@ -31,7 +33,7 @@ function App() {
   //   password: "password"
   // }
 
-  const loggedIn = token !== '';
+  const loggedIn = token !== '' && userId !== '';
 
   // Authenticated wrapper for GET requests
   const apiGet = async (path, userId = myUserId, options = {}) => {
@@ -47,10 +49,11 @@ function App() {
 
   // Log in the user with the given username and password
   const logIn = async (username, password) => {
-    const { status, token, user } = await apiPost('/login', { username, password });
+    const { status, token, user } = await apiPost('/auth/login', { username, password });
     if (status === 200) {
       localStorage.setItem(TOKEN_KEY, token);
       setToken(token);
+      setUserId(user.id);
       setUser(user);
       return true;
     }
@@ -60,6 +63,7 @@ function App() {
 
   // Log out the user
   const logOut = () => {
+    apiPost('/auth/logout');
     localStorage.removeItem(TOKEN_KEY);
     setToken('');
     setUser(null);
@@ -68,7 +72,7 @@ function App() {
   // Fetch the user when the page is loaded if we have a token
   useEffect(() => {
     if (loggedIn) {
-      apiGet('/user').then(({ status, user }) => {
+      apiGet(`/account/view?id=${userId}`).then(({ status, user }) => {
         if (status !== 200) throw new Error('Failed to fetch user');
         setUser(user);
       }).catch((e) => {
