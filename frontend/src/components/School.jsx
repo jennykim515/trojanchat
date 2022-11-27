@@ -7,15 +7,14 @@ import "./School.css";
     props: {boardName, threadCount}
 */
 
-
 const School = (props) => {
     const navigate = useNavigate();
 
     const schoolInfo = props.schoolInfo
     return (
-        <Card variant="outlined" >
+        <Card variant="outlined">
             <CardActionArea onClick={() => {navigate(`/${schoolInfo.boardName}`);}}>
-                <CardMedia height="140" outline=""/>
+                <CardMedia component="div" height="140" />
                 <div className="container">
                 <div className="left"><h2>{schoolInfo.boardName}</h2></div>
                 <div className="right"><p>Thread Count: {schoolInfo.threadCount}</p></div>
