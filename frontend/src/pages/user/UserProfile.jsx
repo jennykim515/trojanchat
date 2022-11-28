@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
+import "../user/UserProfile.css"
 
 const data = {
     employeeId:'01',
@@ -71,49 +72,39 @@ export default function UserProfile({props}) {
     <Container>
       <h1 className="title">User Profile</h1>
       <d1>Double click on text to edit major or graduation year. </d1>
+      <div id = "Info">
       <form onSubmit={formHandler}>
-     <table>
-         <tr>
-             <td>Username: </td>
-             <td>{data.username}</td>
-         </tr>
-         <tr>
-             <td>Email: </td>
-             <td>
-                 {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
-             </td>
-         </tr>
-         <tr>
-             <td>
-                Major:
-             </td>
-             <td>
-                <input 
+        <fieldset>
+          <label >Username: </label>
+          <span>{data.username}</span>
+        </fieldset>
+        <fieldset>
+          <label >Email: </label>
+          {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
+        </fieldset>
+        <fieldset>
+          <label >Major: </label>
+          <input 
                         type="text" 
                         value={majorValue} 
                         onChange={(e) => setMajor(e.target.value)} 
                         marginBottom="10px"/>
-             </td>
-         </tr>
-         
-         <tr>
-             <td>
-                Graduation Year:
-             </td>
-             <td>
-             <input 
+        </fieldset>
+        <fieldset>
+          <label >Graduation Year: </label>
+          <input 
                         type="text" 
                         value={gradValue} 
                         onChange={(e) => setGrad(e.target.value)} 
                         marginBottom="10px"/>
-             </td>
-         </tr>
-         <Button type="submit">Save Changes</Button>
-     </table>
+        </fieldset>
+        <fieldset className="center">
+        <button className="btn" type="submit">Save Changes</button>
+        </fieldset>
      </form>
-
       <br/>
       <br/><br/><br/><br/><br/>
+      </div>
     </Container>
   )
 }

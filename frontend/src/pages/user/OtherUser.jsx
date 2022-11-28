@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import { AppContext } from '../../App'
+import {Link} from 'react-router-dom';
+
 
 const data = {
     employeeId:'01',
@@ -65,7 +67,6 @@ export default function OtherUser({props}) {
                 {majorValue}
              </td>
          </tr>
-         
          <tr>
              <td>
                 Graduation Year:
@@ -75,7 +76,15 @@ export default function OtherUser({props}) {
              </td>
          </tr>
      </table>
-
+    <Link to="/somelink">
+    User's Threads
+    </Link>
+    <Link to="/somelink">
+    User's Comments
+    </Link>
+    <Link to="/">
+    Return to Navigation
+    </Link>
       <br/>
       <br/><br/><br/><br/><br/>
     </Container>

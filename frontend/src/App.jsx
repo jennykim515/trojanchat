@@ -13,11 +13,14 @@ import Navbar from './components/navbar/navbar';
 import { internal_apiGet, internal_apiPost } from './utils/network';
 import OtherUser from "./pages/user/OtherUser";
 
+
+
 export const AppContext = createContext({});
 
 const TOKEN_KEY = 'chatToken';
 
 function App() {
+  
   const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
   const [user, setUser] = useState({});
   const myUserId = user?.id || "";
@@ -78,6 +81,7 @@ function App() {
   }, []);
 
   return (
+  
     <AppContext.Provider value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}>
       <Navbar />
      <BrowserRouter> 
@@ -94,6 +98,7 @@ function App() {
             
         </Routes>
      </BrowserRouter> 
+     
     </AppContext.Provider>
   );
 }
