@@ -4,7 +4,8 @@ fieldset {
   text-align: left;
   border: none;
   padding: 5px 0px;
-
+  margin-top: 12px;
+  margin-bottom: auto;
 }
 
 input{
@@ -24,10 +25,29 @@ label{
   display: inline-block;
   color: white;
   font-weight: bold;
-  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: auto;
 }
 
 .center{
   text-align: center;
   width: 100%;
+}
+
+#Info{
+    margin: auto;
+    width: 130%;
+    padding: 10px;
+    border: 10px solid #6A1F1F;
+    zoom: 1.8;
+    margin-top: -4vh;
+    margin-left: -10vh;
+    margin-bottom: -4vh;
+}
+
+#Writing{
+    width: 100%;
+    text-align: left;
+    border: none;
+    margin-top: 2vh;
 }
