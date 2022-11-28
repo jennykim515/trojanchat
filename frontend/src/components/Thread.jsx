@@ -1,13 +1,18 @@
 import Card from '@mui/material/Card'
 import { CardActionArea } from '@mui/material'
 import './Thread.css';
+import { useNavigate } from "react-router-dom";
+
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
+
     const threadinfo = props.threadInfo
+
+    const navigate = useNavigate();
 
     return (
         <Card variant="outlined">
-            <CardActionArea >
+            <CardActionArea onClick={() => {navigate(`/${threadinfo.title}`);}}>
             <div className="threads-container">
                     <div className="thread-card-top"><h2>{threadinfo.title}</h2></div>
                     <div className="thread-card-bottom">

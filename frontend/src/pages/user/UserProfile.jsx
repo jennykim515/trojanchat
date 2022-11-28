@@ -1,71 +1,53 @@
+<<<<<<< HEAD
 import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import "../user/UserProfile.css"
+=======
+import { useState, useContext, useEffect } from 'react';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import { useApp } from '../../App';
+>>>>>>> e7075ea0ed7b633d5d0f9639aa263b547888a18c
 
 const data = {
-    employeeId:'01',
+    employeeId: '01',
     username: 'John Doe',
     email: 'johndoe@email.com',
     major: 'Frontend Developer',
-    graduation: 'something'
-  }
+    graduation: 'something',
+};
 
-export default function UserProfile({props}) {
+export default function UserProfile({ props }) {
+    const { apiPost, user } = useApp();
 
+    const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
+    const [emailValue, setEmail] = useState(user.email);
+    const [majorValue, setMajor] = useState(user.major);
+    const [gradValue, setGrad] = useState(user.grad);
+    const [usernameValue, setUsername] = useState(user.username);
 
+    const formHandler = async (e) => {
+        e.preventDefault();
 
-  const [employeeData, setEmployeeData] = useState(data)
+        const { status } = await apiPost('/account/update', {
+            email: emailValue,
+            major: majorValue,
+            graduation: gradValue,
+            username: usernameValue,
+        });
 
-    const [emailInput, setEmailInput] = useState(true) //thi shide/show inputfield
-    const [emailValue, setEmail] = useState(data.email)
-    const [majorValue, setMajor] = useState('')
-    const [gradValue, setGrad] = useState('')
-    const [usernameValue, setUsername] = useState(data.username)
-
-
-/*    useEffect(()=> {
-         //tis will run when your page loads  
-         fetch('url')
-         .then( response => response.json())
-         .then(data => {
-          console.log('my data', data);
-         
-            setUsername(data.username)
-            setEmail(data.email)
-            setMajor(data.major)
-            setGrad(data.graduation)            
-         })
-
-    },[])
-
-    */
-
-    function formHandler(e){
-      e.preventDefault();
-      console.log("I am sending", usernameValue, emailValue, majorValue, gradValue)
-
-            //replace url with right one
-      fetch('url', {
-        Method: 'POST',
-        Headers: {
-        Accept: 'application.json',
-        'Content-Type': 'application/json'
-        },
-        Body: {
-        username: usernameValue,
-        email: emailValue,
-        major: majorValue,
-        graduation: gradValue
-        },
-      })
-
-    }
+        if (status === 200) {
+            console.log('success');
+        } else {
+            console.log('fail');
+        }
+    };
     function toggleEmail() {
-        setEmailInput(!emailInput)
-
+        setEmailInput(!emailInput);
     }
 
+<<<<<<< HEAD
     console.log('data',data)
 
   return (
@@ -107,5 +89,61 @@ export default function UserProfile({props}) {
       </div>
     </Container>
   )
-}
+=======
+    return (
+        <Container>
+            <h1 className="title">User Profile</h1>
+            <dl>Double click on text to edit major or graduation year. </dl>
+            <form onSubmit={formHandler}>
+                <table>
+                    <tr>
+                        <td>Username: </td>
+                        <td>{data.username}</td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td>
+                            {emailInput ? (
+                                <span onClick={toggleEmail}>{data.email}</span>
+                            ) : (
+                                <input type="text" />
+                            )}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Major:</td>
+                        <td>
+                            <input
+                                type="text"
+                                value={majorValue}
+                                onChange={(e) => setMajor(e.target.value)}
+                                style={{ marginBottom: '10px' }}
+                            />
+                        </td>
+                    </tr>
 
+                    <tr>
+                        <td>Graduation Year:</td>
+                        <td>
+                            <input
+                                type="text"
+                                value={gradValue}
+                                onChange={(e) => setGrad(e.target.value)}
+                                style={{ marginBottom: '10px' }}
+                            />
+                        </td>
+                    </tr>
+                </table>
+                <Button type="submit">Save Changes</Button>
+            </form>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </Container>
+    );
+>>>>>>> e7075ea0ed7b633d5d0f9639aa263b547888a18c
+}
