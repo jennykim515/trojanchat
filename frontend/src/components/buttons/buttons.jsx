@@ -1,14 +1,14 @@
 import React from 'react';
 import './buttons.css';
 
-export const BUTTONTYPE = {
-    WHITE: 'WHITE',
-    RED: 'RED',
-}
-
 export default function Button(props) {
 
     const { type, text } = props;
+    
+    const BUTTONTYPE = {
+        WHITE: 'WHITE',
+        RED: 'RED',
+    }
 
     const buttonType = () => {
         switch(type){
@@ -17,7 +17,7 @@ export default function Button(props) {
             case BUTTONTYPE.RED:
                 return 'redButton';
             default:
-                return 'button';
+                return 'button'; /*not applicable but required*/
         }
     }
 
