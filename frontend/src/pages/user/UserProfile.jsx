@@ -5,22 +5,37 @@ import Button from '@mui/material/Button'
 import "../user/UserProfile.css"
 import { useApp } from '../../App';
 
-const data = {
-    employeeId: '01',
-    username: 'John Doe',
-    email: 'johndoe@email.com',
-    major: 'Frontend Developer',
-    graduation: 'something',
-};
 
 export default function UserProfile({ props }) {
+
     const { apiPost, user } = useApp();
 
     const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
     const [emailValue, setEmail] = useState(user.email);
     const [majorValue, setMajor] = useState(user.major);
-    const [gradValue, setGrad] = useState(user.grad);
+    const [gradValue, setGrad] = useState(user.graduationYear);
     const [usernameValue, setUsername] = useState(user.username);
+
+
+   useEffect(()=>{
+
+    fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=someUUID')
+    .then(response=> response.json())
+    .then(data =>{
+ 
+       setEmail(data.email);
+       setMajor(data.major);
+       setGrad(data.graduationYear)
+       setUsername(data.username)
+      console.log(data)
+    })
+
+
+
+   },[])
+   
+
+
 
     const formHandler = async (e) => {
         e.preventDefault();
@@ -43,8 +58,6 @@ export default function UserProfile({ props }) {
     }
 
 
-    console.log('data',data)
-
   return (
     <Container>
       <div id = "Info">
@@ -54,11 +67,11 @@ export default function UserProfile({ props }) {
       <form onSubmit={formHandler}>
         <fieldset>
           <label >Username: </label>
-          <span>{data.username}</span>
+          <span>{usernameValue}</span>
         </fieldset>
         <fieldset>
           <label >Email: </label>
-          {emailInput ? <span onClick={toggleEmail}>{data.email}</span> :  <input type="text"/> }
+          {emailInput ? <span onClick={toggleEmail}>{emailValue}</span> :  <input type="text"/> }
         </fieldset>
         <fieldset>
           <label >Major: </label>
