@@ -1,42 +1,47 @@
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom"
-import Comment from "../components/Comment";
-import Container from '@mui/material/Container'
+import { useParams } from 'react-router-dom';
+import Comment from '../components/Comment';
+import Container from '@mui/material/Container';
 
 /*
     Displays all comments of a particular thread
 */
 
-/*const DEFAULT_DATA = [
-    {
-        title: "post1",
-        userName: "user0",
-        timeCreated: "11/29/2012",
-        content: [
-            {title: "post1", userName: "user1", commentId: "1", timeCreated: "12/01/2012", comment: "hello!"},
-            {title: "post1", userName: "user2", commentId: "2", timeCreated: "12/02/2012", comment: "hi!"},
-        ]
+const DEFAULT_DATA = {
+    post: {
+        title: 'post1',
+        userName: 'user0',
+        timeCreated: '11/29/2012',
     },
-    {
-        title: "post2",
-        userName: "user1",
-        timeCreated: "12/02/2012",
-        content: [
-            {title: "post2", commenteruserName: "user3", commentId: "3", timeCreated: "12/04/2012", comment: "hi!"},
-            {title: "post2", commenteruserName: "user2", commentId: "4", timeCreated: "12/05/2012", comment: "hello."},
-        ]
-    },
-];*/
+    comments: [
+        {
+            title: 'post1',
+            userName: 'user1',
+            commentId: '1',
+            timeCreated: '12/01/2012',
+            comment: 'hello!',
+        },
+        {
+            title: 'post1',
+            userName: 'user2',
+            commentId: '2',
+            timeCreated: '12/02/2012',
+            comment: 'hi!',
+        },
+    ],
+};
 
 export default function CommentList() {
     let { thread } = useParams();
 
-    const [PostData, setPostData] = useState([])
+    const [PostData, setPostData] = useState({});
+    const post = PostData.post;
+    const comments = PostData.comments;
 
     useEffect(() => {
         getPostData();
-        console.log(thread)
-    }, [thread])
+        console.log('THREAD', thread);
+    }, [thread]);
 
     function getPostData() {
         // [GET] api call to fetch info about comments in a particular thread for a particular board
@@ -45,45 +50,37 @@ export default function CommentList() {
         /*Json returns: In a Map Style
         {“post” : {Post Object}, “comments”: {List<Comment Object>}*/
 
-        setPostData([
-            {
-                title: "post1",
-                userName: "user0",
-                timeCreated: "11/29/2012",
-                content: [
-                    {title: "post1", userName: "user1", commentId: "1", timeCreated: "12/01/2012", comment: "hello!"},
-                    {title: "post1", userName: "user2", commentId: "2", timeCreated: "12/02/2012", comment: "hi!"},
-                ]
-            },
-            {
-                title: "post2",
-                userName: "user1",
-                timeCreated: "12/02/2012",
-                content: [
-                    {title: "post2", commenterUserName: "user3", commentId: "3", timeCreated: "12/04/2012", comment: "hi!"},
-                    {title: "post2", commenterUserName: "user2", commentId: "4", timeCreated: "12/05/2012", comment: "hello."},
-                ]
-            },
-        ]);
+        setPostData(DEFAULT_DATA);
     }
 
     return (
         <Container>
-        <h1 style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>{thread}</h1>
-        {PostData.map((post, i) => {
-                return(
-                    <div key={post.title + post.userName}>
-                        <Comment 
-                            key={post.content.title + post.content.commenterUserName + post.content.commentId}
-                            commentInfo={post.content.comment} 
-                            
-                         />
-                    </div>
-                )
-            })
-        }
+            <h1
+                style={{
+                    margin: '12px',
+                    fontFamily: 'Helvetica',
+                    flex: 'flex-start',
+                }}
+            >
+                {thread}
+            </h1>
+            {comments &&
+                comments.map((comment, i) => {
+                    console.log(comment);
+                    return (
+                        <div
+                            key={
+                                post.title +
+                                comment.commenterUserName +
+                                comment.commentId
+                            }
+                        >
+                            <Comment commentInfo={comment} />
+                        </div>
+                    );
+                })}
         </Container>
-    )
+    );
 }
 
 /*{PostData.map((comment, i) => {
