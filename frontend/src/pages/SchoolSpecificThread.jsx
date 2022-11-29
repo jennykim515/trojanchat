@@ -37,7 +37,7 @@ export default function SchoolSpecificThread() {
     // load threads about this particular school
     const getSchoolThreads = async () => {
         const filterString = filters.length ? filters.join(',') : '_none';
-        const { status, data } = await apiGet(
+        const { status, ...data } = await apiGet(
             `/feed/board?school=${school}&filter=${filterString}`
         );
         if (status === 200) {
@@ -62,7 +62,7 @@ export default function SchoolSpecificThread() {
             >
                 {school}
             </h1>
-            {schoolThreads.map((thread, i) => {
+            {Object.values(schoolThreads).map((thread, i) => {
                 return (
                     <Thread
                         threadInfo={thread}
