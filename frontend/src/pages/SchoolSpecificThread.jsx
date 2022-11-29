@@ -8,21 +8,21 @@ import { __DEV__ } from '../utils/network';
 
 const DEFAULT_DATA = [
     {
-        title: 'Title 1',
+        content: 'Title 1',
         userName: 'Username 1',
-        timeCreated: '07/28/2002',
+        timestamp: '07/28/2002',
         comments: [],
     },
     {
-        title: 'Title 2',
+        content: 'Title 2',
         userName: 'Username 2',
-        timeCreated: '07/28/2002',
+        timestamp: '07/28/2002',
         comments: [],
     },
     {
-        title: 'Title 3',
+        content: 'Title 3',
         userName: 'Username 3',
-        timeCreated: '07/28/2002',
+        timestamp: '07/28/2002',
         comments: [],
     },
 ];
@@ -63,12 +63,7 @@ export default function SchoolSpecificThread() {
                 {school}
             </h1>
             {Object.values(schoolThreads).map((thread, i) => {
-                return (
-                    <Thread
-                        threadInfo={thread}
-                        key={thread.title + thread.userName}
-                    />
-                );
+                return <Thread threadInfo={thread} key={thread.postId} />;
             })}
         </Container>
     );
