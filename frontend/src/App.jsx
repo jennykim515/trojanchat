@@ -13,7 +13,7 @@ import Navbar from './components/navbar/navbar';
 import { internal_apiGet, internal_apiPost } from './utils/network';
 import OtherUser from "./pages/user/OtherUser";
 import CommentList from './pages/CommentList';
-
+import AddThread from './pages/AddThread/AddThread';
 
 
 export const AppContext = createContext({});
@@ -102,6 +102,8 @@ function App() {
 
             <Route path={'/profile'} element={<UserProfile/>}></Route>
             <Route path={'/otheruser'} element={<OtherUser/>}></Route>
+
+            <Route path={'/addthread'} element={<AddThread/>}></Route>
             
         </Routes>
      </BrowserRouter> 
