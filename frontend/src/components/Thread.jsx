@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
     const threadinfo = props.threadInfo;
-    console.log(threadinfo);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,20 +14,20 @@ const Thread = (props) => {
         <Card variant="outlined">
             <CardActionArea
                 onClick={() => {
-                    navigate(`${location.pathname}/${threadinfo.title}`);
+                    navigate(`${location.pathname}/${threadinfo.postId}`);
                 }}
             >
                 <div className="threads-container">
                     <div className="thread-card-top">
-                        <h2>{threadinfo.title}</h2>
+                        <h2>{threadinfo.content}</h2>
                     </div>
                     <div className="thread-card-bottom">
                         <div className="bottom-left">
                             {' '}
-                            <p>by {threadinfo.userName}</p>
+                            <p>by {threadinfo.userName || threadinfo.userId}</p>
                         </div>
                         <div className="bottom-right">
-                            <p>Time {threadinfo.timeCreated}</p>
+                            <p>Time: {threadinfo.timestamp}</p>
                         </div>
                     </div>
                 </div>

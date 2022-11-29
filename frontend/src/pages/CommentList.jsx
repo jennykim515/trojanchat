@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Comment from '../components/Comment';
 import Container from '@mui/material/Container';
+import { useApp } from '../App';
 
 /*
     Displays all comments of a particular thread
@@ -33,6 +34,7 @@ const DEFAULT_DATA = {
 
 export default function CommentList() {
     let { thread } = useParams();
+    const { apiGet } = useApp();
 
     const [PostData, setPostData] = useState({});
     const post = PostData.post;
@@ -43,15 +45,22 @@ export default function CommentList() {
         console.log('THREAD', thread);
     }, [thread]);
 
-    function getPostData() {
-        // [GET] api call to fetch info about comments in a particular thread for a particular board
-        // content, userName, timeCreated
-        /*const url = '' /post/view*/
-        /*Json returns: In a Map Style
-        {“post” : {Post Object}, “comments”: {List<Comment Object>}*/
+    const getPostData = async () => {
+        const { status, ...data } = await apiGet(`/post/view?postId=${thread}`);
+        if (status === 200) {
+            Object.keys(data).forEach((key) => {
+                if (typeof data[key] === 'string') {
+                    data[key] = JSON.parse(data[key]);
+                }
+            });
+            console.log('DATA', data);
+            setPostData(data);
+        } else {
+            setPostData(DEFAULT_DATA);
+        }
+    };
 
-        setPostData(DEFAULT_DATA);
-    }
+    if (!post) return null;
 
     return (
         <Container>
@@ -62,7 +71,7 @@ export default function CommentList() {
                     flex: 'flex-start',
                 }}
             >
-                {thread}
+                {post.content}
             </h1>
             {comments &&
                 comments.map((comment, i) => {
@@ -70,7 +79,7 @@ export default function CommentList() {
                     return (
                         <div
                             key={
-                                post.title +
+                                post.postId +
                                 comment.commenterUserName +
                                 comment.commentId
                             }
