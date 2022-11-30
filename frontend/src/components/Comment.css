@@ -7,6 +7,7 @@
     justify-content: space-around;
     align-items: left;
     flex-direction: column;
+    padding: 4px;
   }
   
   .comment-card-top{
@@ -14,20 +15,15 @@
   }
   
   .comment-card-bottom{
+      display: flex;
+      padding-top: 5px;
       flex-direction: row;
+      justify-content: space-between;
       margin: 0 20px 10px;
       flex: 1px;
+      font-weight: bold;
   }
-  
-  .bottom-left{
-      flex-direction:row;
-  }
-  
-  .bottom-right{
-      flex-direction:row;
-      align-items: right;
-  }
-  
+
   
   p {
       font-size: 17px;
