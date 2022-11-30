@@ -14,9 +14,12 @@
 }
 
 .thread-card-bottom{
-    flex-direction: row;
-    margin: 0 20px 10px;
-    flex: 1px;
+    display: flex;
+      padding-top: 2px;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 20px 10px;
+      flex: 1px;
 }
 
 .bottom-left{

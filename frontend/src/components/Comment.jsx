@@ -9,16 +9,12 @@ const Comment = (props) => {
         <Card variant="outlined">
             <div className="comment-container">
                 <div className="comment-card-top">
-                    <h2>{commentinfo.comment}</h2>
+                    <p>{commentinfo.content}</p>
                 </div>
                 <div className="comment-card-bottom">
-                    <div className="bottom-left">
                         {' '}
-                        <p>by {commentinfo.userName}</p>
-                    </div>
-                    <div className="bottom-right">
-                        <p>Time {commentinfo.timeCreated}</p>
-                    </div>
+                        <p>by {commentinfo.userId}</p>
+                        <p>{commentinfo.timestamp}</p>
                 </div>
             </div>
         </Card>
