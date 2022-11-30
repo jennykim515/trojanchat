@@ -115,6 +115,10 @@ function App() {
 
             <Route path={'/profile'} element={<UserProfile/>}></Route>
             <Route path={'/otheruser'} element={<OtherUser/>}></Route>
+
+            <Route path={'/addthread'} element={<AddThread/>}></Route>
+
+            
             
         </Routes>
      </BrowserRouter> 
@@ -163,4 +167,4 @@ function DemoComponent() {
             <button onClick={logOut}>Log out</button>
         </div>
     );
-}
+}git
