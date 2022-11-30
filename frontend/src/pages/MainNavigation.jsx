@@ -30,7 +30,9 @@ export default function MainNavigation() {
     const [schools, setSchools] = useState([]);
 
     const getSchoolData = async () => {
-        const { status, ...data } = await apiGet('/feed/home?schools=all');
+        const { status, ...data } = await apiGet(
+            '/feed/home?schools=all,viterbi'
+        );
         if (status === 200) {
             setSchools(
                 Object.keys(data).map((school) => ({
