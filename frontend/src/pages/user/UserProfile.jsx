@@ -55,7 +55,6 @@ export default function UserProfile({ props }) {
 
   return (
     <Container>
-      <div id = "Info">
       <div id = "Writing">
       <h1 className="title">User Profile</h1>
       <d1>Double click on text to edit major or graduation year. </d1>
@@ -91,7 +90,7 @@ export default function UserProfile({ props }) {
       <br/>
       <br/><br/><br/><br/><br/>
       </div>
-      </div>
+
     </Container>
   )
   }

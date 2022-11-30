@@ -5,12 +5,14 @@ fieldset {
   border: none;
   padding: 5px 0px;
   margin-top: 12px;
+  margin-top: 12px;
   margin-bottom: auto;
+  font-size: 30px;
 }
 
 input{
-  border: solid 3px #6A1F1F;
-  
+  border: solid 3px #6A1F1F;  
+  font-size: 25px;
 }
 
 label{
@@ -21,12 +23,13 @@ label{
   background-color: #6A1F1F;
   padding: 10px;
   min-width: 200px;
+  min-height: 70px;
   border-radius: 10px;
   display: inline-block;
   color: white;
   font-weight: bold;
-  margin-top: 100px;
-  margin-bottom: auto;
+  margin-bottom: -50px;
+  margin-top: 20px;
 }
 
 .center{
@@ -34,20 +37,14 @@ label{
   width: 100%;
 }
 
-#Info{
-    margin: auto;
-    width: 130%;
-    padding: 10px;
-    border: 10px solid #6A1F1F;
-    zoom: 1.8;
-    margin-top: -4vh;
-    margin-left: -10vh;
-    margin-bottom: -4vh;
+#Writing{
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+  border: 10px solid #6A1F1F;
+  zoom: 1.2;
+  margin-top: 0px;
+
 }
 
-#Writing{
-    width: 100%;
-    text-align: left;
-    border: none;
-    margin-top: 2vh;
-}
