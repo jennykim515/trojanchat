@@ -30,13 +30,8 @@ export default function UserProfile({ props }) {
       console.log(data)
     })
 
-
-
    },[])
    
-
-
-
     const formHandler = async (e) => {
         e.preventDefault();
 

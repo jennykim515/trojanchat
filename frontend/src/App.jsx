@@ -91,6 +91,7 @@ function App() {
       <Navbar />
      <BrowserRouter> 
         <Routes>
+          
             <Route path='/login' element={<LogIn/>}> </Route>
             <Route path='/signup' element={<SignUp/>}> </Route>
             
@@ -158,3 +159,7 @@ function DemoComponent() {
     </div>
   );
 }
+
+
+//'/thread/:thread'
+//'/school/:school'
