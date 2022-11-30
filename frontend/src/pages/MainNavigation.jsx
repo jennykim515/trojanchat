@@ -31,7 +31,7 @@ export default function MainNavigation() {
 
     const getSchoolData = async () => {
         const { status, ...data } = await apiGet(
-            '/feed/home?schools=all,viterbi'
+            '/feed/home?schools=all,viterbi,general,dornsife,annenberg,roski,marshall'
         );
         if (status === 200) {
             setSchools(
@@ -53,7 +53,7 @@ export default function MainNavigation() {
     // console.log(user);
     return (
         <Container>
-            <h1>USC</h1>
+            <h1 style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>USC</h1>
             {schools.map((schoolData, i) => {
                 return (
                     <div key={schoolData.boardName}>

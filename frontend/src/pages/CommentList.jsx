@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Comment from '../components/Comment';
 import Container from '@mui/material/Container';
 import { useApp } from '../App';
+import AddComment from '../components/AddComment';
 
 /*
     Displays all comments of a particular thread
@@ -88,6 +89,8 @@ export default function CommentList() {
                         </div>
                     );
                 })}
+            <br></br>
+            <AddComment />
         </Container>
     );
 }
