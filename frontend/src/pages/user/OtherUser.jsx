@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import { AppContext } from '../../App'
 import {Link} from 'react-router-dom';
 import { useApp } from '../../App';
-
+import "../user/OtherUser.css"
 
 export default function UserProfile({ props }) {
 
