@@ -29,10 +29,6 @@ const USER_ID = 'userID';
 function App() {
     const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
     const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
-<<<<<<< HEAD
-    const [user, setUser] = useState({});
-  const myUserId = user?.id || "";
-=======
     const [user, setUser] = useState({ id: 'uuidHere'});
     const type = {
       Default: 0,
@@ -42,7 +38,6 @@ function App() {
     }
     const [navType, setNavType] = useState(type.Default)
     const myUserId = user?.id || '';
->>>>>>> main
     // exampleUser: {
     //   id: j32342l2ljf
     //   name: "Trojan",
