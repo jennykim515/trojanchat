@@ -7,11 +7,17 @@ import Button from '@mui/material/Button';
 import "../login/LogIn.css"
 
 export default function LogIn() {
+    const {logIn} = useApp(); 
+
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleSubmit = (e) => {
+        console.log(e);
+        e.preventDefault();
+        logIn(username, password); 
     }
+
     return(
         <>
         <div id="welcomeDropDown"> 
