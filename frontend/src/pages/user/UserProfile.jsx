@@ -57,7 +57,9 @@ export default function UserProfile({ props }) {
     <Container>
       <div id = "Writing">
       <h1 className="title">User Profile</h1>
-      <d1>Double click on text to edit major or graduation year.</d1>
+      <br/>
+      <h2 className="header">Double click on text to edit major or graduation year.</h2>
+      <br/><br/>
       <form onSubmit={formHandler}>
         <fieldset>
           <label >Username: </label>
@@ -65,7 +67,7 @@ export default function UserProfile({ props }) {
         </fieldset>
         <fieldset>
           <label >Email: </label>
-          {emailInput ? <span onClick={toggleEmail}>{emailValue}</span> :  <input type="text"/> }
+          <span>{emailValue}</span>
         </fieldset>
         <fieldset>
           <label >Major: </label>
@@ -83,12 +85,13 @@ export default function UserProfile({ props }) {
                         onChange={(e) => setGrad(e.target.value)} 
                         marginBottom="10px"/>
         </fieldset>
+        <br/><br/>
         <fieldset className="center">
         <button className="btn" type="submit">Save Changes</button>
         </fieldset>
      </form>
       <br/>
-      <br/><br/><br/><br/><br/>
+      <br/><br/>
       </div>
 
     </Container>

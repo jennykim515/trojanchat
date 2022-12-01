@@ -10,6 +10,14 @@ fieldset {
   font-size: 30px;
 }
 
+.title{
+  font-size: 50px;
+}
+
+.header{
+  font-size: 23px;
+}
+
 input{
   border: solid 3px #6A1F1F;  
   font-size: 25px;
@@ -28,8 +36,8 @@ label{
   display: inline-block;
   color: white;
   font-weight: bold;
-  margin-bottom: -50px;
-  margin-top: 20px;
+  margin-bottom: -30px;
+  margin-top: 0px;
 }
 
 .center{
