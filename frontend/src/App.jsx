@@ -104,6 +104,7 @@ function App() {
       <Navbar />
      <BrowserRouter> 
         <Routes>
+            
             <Route path='/login' element={<LogIn/>}> </Route>
             <Route path='/signup' element={<SignUp/>}> </Route>
             
@@ -117,8 +118,6 @@ function App() {
             <Route path={'/otheruser'} element={<OtherUser/>}></Route>
 
             <Route path={'/addthread'} element={<AddThread/>}></Route>
-
-            
             
         </Routes>
      </BrowserRouter> 
