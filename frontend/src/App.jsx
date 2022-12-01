@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { createContext, useState } from 'react';
+import ChatThread from '../src/pages/ChatThreads'
 import {
     BrowserRouter,
     MemoryRouter as Router,
@@ -26,7 +27,14 @@ const USER_ID = 'userID';
 function App() {
     const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
     const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ id: 'uuidHere'});
+    const type = {
+      Default: 0,
+      Registration: 1,
+      Profile: 2,
+      Comments: 3,
+    }
+    const [navType, setNavType] = useState(type.Default)
     const myUserId = user?.id || '';
     // exampleUser: {
     //   id: j32342l2ljf
@@ -100,12 +108,14 @@ function App() {
         }
     }, []);
 
+
     return (
         <AppContext.Provider
-            value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}
+            value={{ apiGet, apiPost, logIn, loggedIn, logOut, user, navType, setNavType }}
         >
-            <Navbar />
+            
             <BrowserRouter>
+            <Navbar navType={navType} setNavType={setNavType} />
                 <Routes>
                     <Route path="/login" element={<LogIn />}>
                         {' '}
@@ -120,10 +130,12 @@ function App() {
                     <Route path="/:school/:thread" element={<CommentList />} />
 
                     <Route path={'/profile'} element={<UserProfile />}></Route>
+                    <Route path='/profile/mythreads' element={<ChatThread />}/>
                     <Route path={'/otheruser'} element={<OtherUser />}></Route>
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>
+        
     );
 }
 
