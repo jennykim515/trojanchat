@@ -10,12 +10,9 @@ const UserInfo = (props) => {
             <p>by {UserInfo.major}</p>
             <Button 
                 variant="outlined"
-                onClick={() => {
-                    console.log("Clicked");
-                }}
             >View More</Button>
         </Card>
     )
 }
 
-export default Thread;
+export default UserInfo;

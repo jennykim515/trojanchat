@@ -5,6 +5,7 @@ import Thread from '../components/Thread';
 import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import { __DEV__ } from '../utils/network';
+import Button from '../components/buttons/buttons';
 
 const DEFAULT_DATA = [
     {
@@ -53,6 +54,7 @@ export default function SchoolSpecificThread() {
 
     return (
         <Container>
+            
             <h1
                 style={{
                     margin: '12px',
@@ -63,7 +65,7 @@ export default function SchoolSpecificThread() {
                 {school}
             </h1>
             {Object.values(schoolThreads).map((thread, i) => {
-                return <Thread threadInfo={thread} key={thread.postId} />;
+                return <Thread threadInfo={thread} key={i} />;
             })}
         </Container>
     );
