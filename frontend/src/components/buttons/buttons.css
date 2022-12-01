@@ -1,26 +1,14 @@
-.buttoncontainer{
+.buttoncontainer {
     width: 250px;
     margin: 10px;
     text-align: center;
+    filter: drop-shadow(0 0.25rem 0.1rem #584f4f);
 }
 
-.whiteButton{
-  background-color: white;
-  color: #6A1F1F;
-  width: 100%;
-  font-size: 20px;
-  font-family: 'Helvetica';
-  padding: 10px 25px;
-  border-radius: 20px;
-  margin: 10px 0px;
-  cursor: pointer;
-  transition-duration: 0.4s;
-}
-
-.redButton{
+.whiteButton {
+    background-color: white;
+    color: #6a1f1f;
     width: 100%;
-    color: white;
-    background-color: #6A1F1F;
     font-size: 20px;
     font-family: 'Helvetica';
     padding: 10px 25px;
@@ -30,10 +18,21 @@
     transition-duration: 0.4s;
 }
 
-.redButton:hover{
-    background-color: #B15555;
-  }
+.redButton {
+    width: 100%;
+    color: white;
+    background-color: #6a1f1f;
+    font-size: 20px;
+    font-family: 'Helvetica';
+    padding: 10px 25px;
+    border-radius: 20px;
+    margin: 10px 0px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
 
-  .whiteButton:hover{
-    box-shadow: 0 1px 5px #6A1F1F;
-  }
+.redButton:hover,
+.whiteButton:hover {
+    background-color: #ffd25f;
+    color: #6a1f1f;
+}

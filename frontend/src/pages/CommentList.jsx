@@ -37,12 +37,15 @@ const DEFAULT_DATA = {
 export default function CommentList() {
     let { thread } = useParams();
     const { apiGet } = useApp();
-    const { setNavType } = useContext(AppContext)
-    setNavType(3); // set type to comments
+    const { setNavType } = useContext(AppContext);
+
+    useEffect(() => {
+        setNavType(3);
+    }, []);
 
     const [PostData, setPostData] = useState({});
     const post = PostData.post;
-    const comments = PostData.comments;
+    const comments = PostData.comments || [];
 
     useEffect(() => {
         getPostData();
@@ -66,15 +69,7 @@ export default function CommentList() {
 
     return (
         <Container>
-            <h1
-                style={{
-                    margin: '12px',
-                    fontFamily: 'Helvetica',
-                    flex: 'flex-start',
-                }}
-            >
-                {post.content}
-            </h1>
+            <h1 className="boardTitle">{post.content}</h1>
             {comments &&
                 comments.map((comment, i) => {
                     console.log(comment);

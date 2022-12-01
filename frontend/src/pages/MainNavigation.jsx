@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import School from '../components/School';
 import { __DEV__ } from '../utils/network';
+import Loading from '../components/Loading';
 
 const DEFAULT_FEED = [
     {
@@ -28,6 +29,7 @@ export default function MainNavigation() {
     const { apiGet } = useApp();
 
     const [schools, setSchools] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const getSchoolData = async () => {
         const { status, ...data } = await apiGet(
@@ -43,6 +45,8 @@ export default function MainNavigation() {
         } else {
             if (__DEV__) setSchools(DEFAULT_FEED);
         }
+
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -53,14 +57,18 @@ export default function MainNavigation() {
     // console.log(user);
     return (
         <Container>
-            <h1 style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>USC</h1>
-            {schools.map((schoolData, i) => {
-                return (
-                    <div key={schoolData.boardName}>
-                        <School key={i} schoolInfo={schoolData} />
-                    </div>
-                );
-            })}
+            <h1 className="boardTitle">USC</h1>
+            {!loading ? (
+                schools.map((schoolData, i) => {
+                    return (
+                        <div key={schoolData.boardName}>
+                            <School key={i} schoolInfo={schoolData} />
+                        </div>
+                    );
+                })
+            ) : (
+                <Loading />
+            )}
         </Container>
     );
 }
