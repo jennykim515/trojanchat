@@ -13,12 +13,7 @@ export default function LogIn() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-<<<<<<< HEAD
-    const handleSubmit = (e) => {
 
-   
-
-=======
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,7 +23,6 @@ export default function LogIn() {
         else {
             alert("Invalid username/password");
         }
->>>>>>> main
     }
     
     return(
