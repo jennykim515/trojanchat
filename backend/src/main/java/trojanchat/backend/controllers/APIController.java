@@ -208,7 +208,7 @@ public class APIController {
 		return ResponseEntity.ok(gson.toJson(postView).toString());
 	}
 	
-//	<-		ACCOUNT COMMENTS		->
+//	<-		ACCOUNT VERIFY		->
 	@CrossOrigin
 	@RequestMapping("/api/account/verify")
     @ResponseBody
@@ -223,8 +223,6 @@ public class APIController {
 		}
 		return ResponseEntity.ok(gson.toJson(user).toString());
 	}
-	
-//	<-		POST REQUESTS		->
 	
 //	<-		UPDATE ACCOUNT		->
 	@PostMapping("/api/account/create")

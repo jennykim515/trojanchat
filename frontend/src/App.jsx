@@ -59,14 +59,15 @@ function App() {
 
     // Log in the user with the given username and password
     const logIn = async (username, password) => {
-        const { status, token, user } = await apiPost('/auth/login', {
-            username,
-            password,
-        });
+        const { status, ...user } = await apiGet(`/account/verify?username=${username}&password=${password}`
+        );
         if (status === 200) {
-            localStorage.setItem(TOKEN_KEY, token);
-            setToken(token);
-            setUserId(user.id);
+            const { userId } = user;
+            const newToken = `${username}+${password}`
+            localStorage.setItem(TOKEN_KEY, newToken);
+            localStorage.setItem(USER_ID, userId);
+            setToken(newToken);
+            setUserId(userId);
             setUser(user);
             return true;
         }
@@ -80,15 +81,17 @@ function App() {
         localStorage.removeItem(TOKEN_KEY);
         setToken('');
         setUser(null);
+        window.location.reload();
     };
 
     // Fetch the user when the page is loaded if we have a token
     useEffect(() => {
         if (loggedIn) {
             apiGet(`/account/view?id=${userId}`)
-                .then(({ status, user }) => {
+                .then(({ status, ...user }) => {
                     if (status !== 200) throw new Error('Failed to fetch user');
                     setUser(user);
+                    console.log(user);
                 })
                 .catch((e) => {
                     console.error(e);
