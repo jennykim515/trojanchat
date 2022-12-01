@@ -14,6 +14,7 @@ export default function LogIn() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -24,7 +25,11 @@ export default function LogIn() {
             alert("Invalid username/password");
         }
     }
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> main
     return(
         <>
         <div id="welcomeDropDown"> 
