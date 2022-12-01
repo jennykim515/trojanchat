@@ -51,7 +51,7 @@ export default function UserThreads() {
     // console.log(user);
     return (
         <Container>
-            <h1>{user.name}'s Threads</h1>
+            <h1  style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>{user.name}'s Threads</h1>
             <Button variant="contained">Return to Profile</Button>
 
             {threadData && threadData.map((thread, i) => {

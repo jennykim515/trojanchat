@@ -1,24 +1,25 @@
 import Card from '@mui/material/Card'
-import Button from '@mui/material/Button'
+import { CardActionArea, CardMedia } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+import "./School.css";
 
 /*
     props: {boardName, threadCount}
 */
+
 const School = (props) => {
     const navigate = useNavigate();
 
     const schoolInfo = props.schoolInfo
     return (
         <Card variant="outlined">
-            <h2>{schoolInfo.boardName}</h2>
-            <p>Thread Count: {schoolInfo.threadCount}</p>
-            <Button 
-                variant="outlined"
-                onClick={() => {
-                    navigate(`/${schoolInfo.boardName}`);
-                }}
-            >View More</Button>
+            <CardActionArea onClick={() => {navigate(`/${schoolInfo.boardName}`);}}>
+                <CardMedia component="div" height="140" />
+                <div className="container">
+                <div className="left"><h2>{schoolInfo.boardName}</h2></div>
+                <div className="right"><p>Thread Count: {schoolInfo.threadCount}</p></div>
+                </div>
+            </CardActionArea>
         </Card>
     )
 }

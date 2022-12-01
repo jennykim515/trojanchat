@@ -1,12 +1,11 @@
 export const __DEV__ = process.env.NODE_ENV === 'development';
 const apiUrl = __DEV__
-    ? 'http://localhost:3000/api'
-    : 'http://localhost:3000/api'
+    ? 'https://trojanchat.wl.r.appspot.com/api'
+    : 'https://trojanchat.wl.r.appspot.com/api'
 
 const constructUrl = (path, params) => {
-    let url = `${apiUrl}${
-        path.startsWith('/') ? path : `/${path}`
-    }${path}`;
+    let url = `${apiUrl}${path.startsWith('/') ? path : `/${path}`
+        }`;
 
     Object.entries(params).forEach(([key, value]) => {
         if (value) {
@@ -35,9 +34,9 @@ const processResponse = async (response) => {
 };
 
 export const internal_apiGet = async (
-    path, 
-    userId = '', 
-    uid = '', 
+    path,
+    userId = '',
+    uid = '',
     options = {}
 ) => {
     try {
