@@ -1,0 +1,31 @@
+.comment-container{
+    color: black;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Helvetica';
+    display: flex;
+    justify-content: space-around;
+    align-items: left;
+    flex-direction: column;
+    padding: 4px;
+  }
+  
+  .comment-card-top{
+      margin: 10px 20px 0;
+  }
+  
+  .comment-card-bottom{
+      display: flex;
+      padding-top: 5px;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 20px 10px;
+      flex: 1px;
+      font-weight: bold;
+  }
+
+  
+  p {
+      font-size: 17px;
+  }
+  
