@@ -11,6 +11,12 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = ({navType, setNavType}) => {
     const {logOut} = useApp();
     let navigate = useNavigate(); 
+    const {} = useApp();
+
+    const logOut2 = () => {
+        logOut();
+        navigate("/login");
+      };
 
     // default
     if(navType === 0) {
@@ -20,7 +26,7 @@ const Navbar = ({navType, setNavType}) => {
                 <nav>
                     <ul>
                         <li><a href="/profile">Profile</a></li>
-                        <li><button onClick={logOut}>Logout</button></li>
+                        <li><button onClick={logOut2}>Logout</button></li>
                     </ul>
                 </nav>
             </div>
@@ -38,7 +44,7 @@ const Navbar = ({navType, setNavType}) => {
                             navigate('/')
                         }}><Button type="WHITE" text="Return to Homepage" /></li>
                         <li><a href="/profile">Profile</a></li>
-                        <li><button onClick={logOut}>Logout</button></li>
+                        <li><button onClick={logOut2}>Logout</button></li>
                     </ul>
                 </nav>
             </div>
@@ -55,8 +61,8 @@ const Navbar = ({navType, setNavType}) => {
                             setNavType(0)
                             navigate(-1)
                         }}><Button type="WHITE" text="Return to Navigation" /></li>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><button onClick={logOut}>Logout</button></li>
+                        <li id="profileB1"><a href="/profile">Profile</a></li>
+                        <li id="logoutB1"><button onClick={logOut2}>Logout</button></li>
                     </ul>
                 </nav>
             </div>
@@ -73,8 +79,21 @@ const Navbar = ({navType, setNavType}) => {
                             setNavType(0)
                             navigate(-1)
                         }}><Button type="WHITE" text="Return to Board"/></li>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><button onClick={logOut}>Logout</button></li>
+                        <li id="profileB1"><a href="/profile">Profile</a></li>
+                        <li id="logoutB1"><button onClick={logOut2}>Logout</button></li>
+                    </ul>
+                </nav>
+            </div>
+        )
+    }
+
+    else if(navType === 4){
+        return (
+            <div className="navbarcontainer">
+            <div className="navbarleft"><Logo /></div>
+                <nav>
+                    <ul>
+                        <li><a href="/login">Login</a></li>
                     </ul>
                 </nav>
             </div>

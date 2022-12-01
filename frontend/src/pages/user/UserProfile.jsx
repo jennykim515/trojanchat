@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useApp } from '../../App';
 import { AppContext } from '../../App';
+import Navbar from '../../components/navbar/navbar';
 
 const data = {
     employeeId: '01',
@@ -14,8 +15,6 @@ const data = {
 
 export default function UserProfile({ props }) {
     const { apiPost, user } = useApp();
-    const { setNavType } = useContext(AppContext)
-    setNavType(2); // set type to profile
     const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
     const [emailValue, setEmail] = useState(user.email);
     const [majorValue, setMajor] = useState(user.major);
@@ -41,8 +40,10 @@ export default function UserProfile({ props }) {
     function toggleEmail() {
         setEmailInput(!emailInput);
     }
-
+    const [navType, setNavType] = useState(2);
     return (
+        <>
+        <Navbar navType={navType} setNavType={setNavType} />
         <Container>
             <h1 className="title">User Profile</h1>
             <dl>Double click on text to edit major or graduation year. </dl>
@@ -96,5 +97,6 @@ export default function UserProfile({ props }) {
             <br />
             <br />
         </Container>
+        </>
     );
 }

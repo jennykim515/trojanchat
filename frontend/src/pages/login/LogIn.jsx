@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link} from 'react-router-dom';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -8,9 +8,11 @@ import "../login/LogIn.css"
 import { useApp } from '../../App';
 import Bubbles from '../../components/logo/chatbubble';
 
+import Navbar from '../../components/navbar/navbar';
+
 export default function LogIn() {
     const { logIn } = useApp();
-
+    const navigate = useNavigate();
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -25,8 +27,10 @@ export default function LogIn() {
         }
     }
 
+    const [navType, setNavType] = useState(0);
     return(
         <>
+        {/* <Navbar navType={navType} setNavType={setNavType} /> */}
         <div id="welcomeDropDown"> 
                 <div id="logoCircle"><div id="image"><Bubbles /></div></div>
                 <p id="trojanChats"> Trojan Chats </p> 
@@ -71,7 +75,7 @@ export default function LogIn() {
                     }}} 
                 > Login </Button>
                 <p id="or"> or </p>
-                <Button variant="contained" type="submit" onClick={() => handleSubmit()}
+                <Button variant="contained" type="submit" onClick={()=> navigate("/signup")}
                     sx={{width: '100%',
                     height: '50px',
                     color: 'white',

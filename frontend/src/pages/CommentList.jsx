@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import AddComment from '../components/AddComment';
 import { AppContext } from '../App';
+import Navbar from '../components/navbar/navbar';
 
 /*
     Displays all comments of a particular thread
@@ -37,8 +38,7 @@ const DEFAULT_DATA = {
 export default function CommentList() {
     let { thread } = useParams();
     const { apiGet } = useApp();
-    const { setNavType } = useContext(AppContext)
-    setNavType(3); // set type to comments
+
 
     const [PostData, setPostData] = useState({});
     const post = PostData.post;
@@ -61,10 +61,12 @@ export default function CommentList() {
             setPostData(DEFAULT_DATA);
         }
     };
-
+    
+    const [navType, setNavType] = useState(3);
     if (!post) return null;
-
     return (
+        <>
+         <Navbar navType={navType} setNavType={setNavType} />
         <Container>
             <h1
                 style={{
@@ -93,5 +95,6 @@ export default function CommentList() {
             <br></br>
             <AddComment />
         </Container>
+        </>
     );
 }

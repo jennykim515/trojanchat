@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
+import Navbar from '../components/navbar/navbar';
 
 const DEFAULT_DATA = [
     {
@@ -51,10 +52,11 @@ export default function SchoolSpecificThread() {
     useEffect(() => {
         getSchoolThreads();
     }, [filters, school]);
-
+    const [navType, setNavType] = useState(3);
     return (
+        <>
+         <Navbar navType={navType} setNavType={setNavType} />
         <Container>
-            
             <h1
                 style={{
                     margin: '12px',
@@ -68,5 +70,6 @@ export default function SchoolSpecificThread() {
                 return <Thread threadInfo={thread} key={i} />;
             })}
         </Container>
+        </>
     );
 }

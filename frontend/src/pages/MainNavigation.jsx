@@ -1,10 +1,11 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect} from 'react';
 import { AppContext, useApp } from '../App';
 import Thread from '../components/Thread';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import School from '../components/School';
 import { __DEV__ } from '../utils/network';
+import Navbar from "../components/navbar/navbar"
 
 const DEFAULT_FEED = [
     {
@@ -51,7 +52,10 @@ export default function MainNavigation() {
 
     // const { user } = useContext(AppContext)
     // console.log(user);
+    const [navType, setNavType] = useState(0);
     return (
+        <>
+         <Navbar navType={navType} setNavType={setNavType} />
         <Container>
             <h1 style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>USC</h1>
             {schools.map((schoolData, i) => {
@@ -62,5 +66,6 @@ export default function MainNavigation() {
                 );
             })}
         </Container>
+        </>
     );
 }

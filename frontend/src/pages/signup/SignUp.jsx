@@ -1,18 +1,19 @@
 import React, { useContext, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../signup/SignUp.css";
 import Tag from "../../components/tagShape/Tag";
 import { AppContext } from "../../App";
+import Navbar from '../../components/navbar/navbar';
 
 //maybe add is loading feature
 //add navbar component later
 export default function SignUp() {
-  const { setNavType } = useContext(AppContext);
-  setNavType(1); // set type to registration
+
+
   const [email, setEmail] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -20,7 +21,7 @@ export default function SignUp() {
   const [passwordMatch, setPasswordMatch] = React.useState(true);
   const [enableSubmit, setEnableSubmit] = React.useState(false);
   const [incorrectEmail, setIncorrectEmail] = React.useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (
       !email.toLowerCase().endsWith("@usc.edu") &&
@@ -48,10 +49,14 @@ export default function SignUp() {
     console.log("enableSubmit is ", enableSubmit);
   }, [passwordConfirm, password]);
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    navigate("/")
+  };
 
+  const [navType, setNavType] = useState(4);
   return (
     <>
+    <Navbar navType={navType} setNavType={setNavType} />
       <div id="SignUp">
         <h3 id="register" className="SUtext">
           {" "}
