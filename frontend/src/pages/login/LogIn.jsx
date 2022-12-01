@@ -5,30 +5,35 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "../login/LogIn.css"
+import { useApp } from '../../App';
+import Bubbles from '../../components/logo/chatbubble';
 
 export default function LogIn() {
-    const {logIn} = useApp(); 
+    const { logIn } = useApp();
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const handleSubmit = (e) => {
-        console.log(e);
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        logIn(username, password); 
+
+        if (await logIn(username, password)) {
+            window.location = "/";
+        }
+        else {
+            alert("Invalid username/password");
+        }
     }
 
     return(
         <>
         <div id="welcomeDropDown"> 
-            <span id="span">
-                <div id="logoCircle"> <p>logo here </p></div>
+                <div id="logoCircle"><div id="image"><Bubbles /></div></div>
                 <p id="trojanChats"> Trojan Chats </p> 
-            </span>  
         </div>
         <div id="curvedInfoBox"> <p id="infoInCurvedBox">An online forum platform designed for USC students, by USC students. Trojan Chats is a hub for USC-related questions, discussions, and networking opportunities. Free for all USC Trojans. </p> </div>
         <div id="LogIn">
-            <form id="logInForm" onSubmit={(e) => handleSubmit(e)}>
+            <form id="logInForm" onSubmit={handleSubmit}>
             <Box
             component="form"
             sx={{
@@ -51,9 +56,35 @@ export default function LogIn() {
                 <TextField id="outlined-basic"  type={"password"} name="password" label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
             </Box>
             <span id="span2"> 
-                <Button variant="contained" type="submit" onClick={() => handleSubmit()} style={{backgroundColor: "#6A1F1F"}} > Login </Button>
+                <Button variant="contained" type="submit" onClick={() => handleSubmit()}
+                sx={{width: '100%',
+                    height: '50px',
+                    color: 'white',
+                    backgroundColor: '#6A1F1F',
+                    fontSize: '15px',
+                    fontFamily: 'Helvetica',
+                    borderRadius: '40px',
+                    cursor: 'pointer',
+                    transitionDuration: '0.4s',
+                    "&:hover": {
+                        backgroundColor: '#FFD25F'
+                    }}} 
+                > Login </Button>
                 <p id="or"> or </p>
-                <Button variant="contained" type="submit" onClick={() => handleSubmit()} style={{backgroundColor: "#6A1F1F"}} > Create an Account </Button>
+                <Button variant="contained" type="submit" onClick={() => handleSubmit()}
+                    sx={{width: '100%',
+                    height: '50px',
+                    color: 'white',
+                    backgroundColor: '#6A1F1F',
+                    fontSize: '15px',
+                    fontFamily: 'Helvetica',
+                    borderRadius: '30px',
+                    cursor: 'pointer',
+                    transitionDuration: '0.4s',
+                        "&:hover": {
+                            backgroundColor: '#FFD25F'
+                        }}}
+                > Create an Account </Button>
             </span>
             </form>
         </div>

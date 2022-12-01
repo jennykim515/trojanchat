@@ -2,64 +2,44 @@ import { useState, useContext, useEffect } from "react";
 import { AppContext } from '../App'
 import Thread from "../components/Thread";
 import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
+import Button from "../components/buttons/buttons";
+import { useApp } from "../App";
 
 /*
     Displays all of User's Threads
 */
 export default function UserThreads() {
+    const app = useApp()
     const [threadData, setThreadData] = useState([]);
     
     useEffect(() => {
         getThreadData();
     }, [])
 
-    const getThreadData = () => {
+    const getThreadData = async () => {
         // [GET] api call to fetch info about other user's thread /account/posts
         // userName, title, timeCreated, comments
-        const url = '/account/posts'
+        const url = `/account/posts?id=${user.id}`
+        const {status, ...data} = await app.apiGet(url)
+        if(status === 200) {
+            setThreadData(data)
+        }
 
-        setThreadData([
-            {
-                title: "Title 1",
-                userName: "Username 1",
-                timeCreated: '07/28/2001',
-                comments: [
-                    "hello", "how are you"
-                ]
-            },
-            {
-                title: "Title 2",
-                userName: "Username 2",
-                timeCreated: '07/28/2001',
-                comments: [
-                    "hello", "how are you"
-                ]
-            },
-            {
-                title: "Title 3",
-                userName: "Username 3",
-                timeCreated: '07/28/2001',
-                comments: [
-                    "hello", "how are you"
-                ]
-            },
-
-        ]);
+        
     }
     const { user } = useContext(AppContext)
-    // console.log(user);
+
     return (
         <Container>
-            <h1  style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>{user.name}'s Threads</h1>
-            <Button variant="contained">Return to Profile</Button>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <h1 style={{margin: "12px", fontFamily: "Helvetica", flex: "flex-start"}}>{user.name || user.id}'s Threads</h1>
+                <Button type="RED" text="Return to Profile" />
+            </div>
+            
+            {threadData && (Object.keys(threadData).map((key, i) => {
+                return <Thread key={i} threadInfo={threadData[key]} />
+            }))}
 
-            {threadData && threadData.map((thread, i) => {
-                return (<Thread 
-                    key={i}
-                    threadInfo={thread} 
-                />)
-            })}
         </Container>
     )
 }
