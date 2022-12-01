@@ -57,7 +57,7 @@ export default function UserProfile({ props }) {
     <Container>
       <div id = "Writing">
       <h1 className="title">User Profile</h1>
-      <d1>Double click on text to edit major or graduation year. </d1>
+      <d1>Double click on text to edit major or graduation year.</d1>
       <form onSubmit={formHandler}>
         <fieldset>
           <label >Username: </label>
