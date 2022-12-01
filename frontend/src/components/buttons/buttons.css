@@ -2,7 +2,7 @@
     width: 250px;
     margin: 10px;
     text-align: center;
-    filter: drop-shadow(0 0.25rem 0.1rem #584f4f);
+    filter: drop-shadow(0 0.25rem 0.1rem rgba(0, 0, 0, 0.3));
 }
 
 .whiteButton {
