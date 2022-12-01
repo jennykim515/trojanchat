@@ -25,11 +25,6 @@ export default function LogIn() {
             alert("Invalid username/password");
         }
     }
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> main
     return(
         <>
         <div id="welcomeDropDown"> 
