@@ -54,37 +54,30 @@ export default function UserProfile({ props }) {
 
   return (
     <Container>
-      <h1>{usernameValue}'s Profile</h1>
+      <h1 id = "title">{usernameValue}'s Profile</h1>
      <table>
          <tr>
-             <td>Username: </td>
+             <td>Username: </td>        
              <td>{usernameValue}</td>
          </tr>
          <tr>
-             <td>
-                Major:
-             </td>
-             <td>
-                {majorValue}
-             </td>
+             <td> Major:</td>
+             <td>{majorValue}</td>    
          </tr>
-         <tr>
-             <td>
-                Graduation Year:
-             </td>
-             <td>
-              {gradValue}
-             </td>
+         <tr>  
+             <td>Graduation Year:</td> 
+             <td>{gradValue}</td>    
          </tr>
      </table>
-    <Link to="/somelink">
-    User's Threads
+    <Link to="/profile/mythreads">
+    <button className="btn3">User's Threads</button>
     </Link>
     <Link to="/somelink">
-    User's Comments
+    <button className="btn4">User's Comments</button>
     </Link>
-    <Link to="/">
-    Return to Navigation
+    <br/>
+    <Link to="/somelink">
+    <button className="btn5">Return to Navigation</button>
     </Link>
       <br/>
       <br/><br/><br/><br/><br/>
