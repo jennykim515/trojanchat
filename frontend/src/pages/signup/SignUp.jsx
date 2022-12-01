@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "../signup/SignUp.css"
+import Tag from '../../components/tagShape/Tag';
 
 //maybe add is loading feature 
 //add navbar component later 
@@ -103,6 +104,7 @@ export default function SignUp() {
          </form>
          <h3 className="SUtext"> *must be a USC-associated email address (@usc.edu) </h3>
          </div>
+
         </>
 
     );
