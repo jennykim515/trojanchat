@@ -26,18 +26,18 @@ const TOKEN_KEY = 'chatToken';
 const USER_ID = 'userID';
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
-  const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
-  const [user, setUser] = useState({});
+    const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
+    const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
+    const [user, setUser] = useState({});
   const myUserId = user?.id || "";
-  // exampleUser: {
-  //   id: j32342l2ljf
-  //   name: "Trojan",
-  //   major: "Computer Science",
-  //   username: "tjan",
-  //   grad: "2024",
-  //   password: "password"
-  // }
+    // exampleUser: {
+    //   id: j32342l2ljf
+    //   name: "Trojan",
+    //   major: "Computer Science",
+    //   username: "tjan",
+    //   grad: "2024",
+    //   password: "password"
+    // }
 
     const loggedIn = token !== '' && userId !== '';
 
@@ -99,30 +99,35 @@ function App() {
         }
     }, []);
 
-  return (
-    <AppContext.Provider value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}>
-      <Navbar />
-     <BrowserRouter> 
-        <Routes>
-            
-            <Route path='/login' element={<LogIn/>}> </Route>
-            <Route path='/signup' element={<SignUp/>}> </Route>
-            
-            {/* If signed in */}
-            <Route path='' element={<MainNavigation />} />
-            <Route path='/:school' element={<SchoolSpecificThread />} />
-            <Route path='/:thread' element={<CommentList />} />
+    return (
+        <AppContext.Provider
+            value={{ apiGet, apiPost, logIn, loggedIn, logOut, user }}
+        >
+            <Navbar />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<LogIn />}>
+                        {' '}
+                    </Route>
+                    <Route path="/signup" element={<SignUp />}>
+                        {' '}
+                    </Route>
+
+                    {/* If signed in */}
+                    <Route path="" element={<MainNavigation />} />
+                    <Route path="/:school" element={<SchoolSpecificThread />} />
+                    <Route path="/:school/:thread" element={<CommentList />} />
+
+                    <Route path={'/profile'} element={<UserProfile />}></Route>
+                    <Route path={'/otheruser'} element={<OtherUser />}></Route>
+
+                    <Route path={'/addthreads'} element={<AddThread/>}></Route>
 
 
-            <Route path={'/profile'} element={<UserProfile/>}></Route>
-            <Route path={'/otheruser'} element={<OtherUser/>}></Route>
-
-            <Route path={'/addthread'} element={<AddThread/>}></Route>
-            
-        </Routes>
-     </BrowserRouter> 
-    </AppContext.Provider>
-  );
+                </Routes>
+            </BrowserRouter>
+        </AppContext.Provider>
+    );
 }
 
 
@@ -167,4 +172,4 @@ function DemoComponent() {
             <button onClick={logOut}>Log out</button>
         </div>
     );
-} 
+}
