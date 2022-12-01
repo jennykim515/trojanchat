@@ -33,11 +33,6 @@ export default function SignUp() {
     }
   }, [email]);
 
-<<<<<<< HEAD
-    const handleSubmit = (e) => {
-       
-        
-=======
   useEffect(() => {
     if (password.length === 0 || passwordConfirm.length === 0) {
       setPasswordMatch(true);
@@ -48,7 +43,6 @@ export default function SignUp() {
     } else {
       setPasswordMatch(true);
       setEnableSubmit(true);
->>>>>>> main
     }
     console.log("password match is", passwordMatch);
     console.log("enableSubmit is ", enableSubmit);
