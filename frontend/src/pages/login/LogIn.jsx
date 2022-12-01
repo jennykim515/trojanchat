@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "../login/LogIn.css"
 import { useApp } from '../../App';
+import Bubbles from '../../components/logo/chatbubble';
 
 export default function LogIn() {
     const { logIn } = useApp();
@@ -26,10 +27,8 @@ export default function LogIn() {
     return(
         <>
         <div id="welcomeDropDown"> 
-            <span id="span">
-                <div id="logoCircle"> <p>logo here </p></div>
+                <div id="logoCircle"><div id="image"><Bubbles /></div></div>
                 <p id="trojanChats"> Trojan Chats </p> 
-            </span>  
         </div>
         <div id="curvedInfoBox"> <p id="infoInCurvedBox">An online forum platform designed for USC students, by USC students. Trojan Chats is a hub for USC-related questions, discussions, and networking opportunities. Free for all USC Trojans. </p> </div>
         <div id="LogIn">
