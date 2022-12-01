@@ -1,20 +1,67 @@
-import Button from './buttons/buttons'
-import { TextField, Grid } from '@mui/material'
+import Button from './buttons/buttons';
+import { TextField, Grid } from '@mui/material';
+import { useState } from 'react';
+import { useApp } from '../App';
+import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function AddComment(){
+export default function AddComment() {
+    const { apiPost, loggedIn, user } = useApp();
+    const [comment, setComment] = useState('');
+    const location = useLocation();
+    const postId = location.pathname.split('/')[2];
 
-    /*const { commentValue, handleCommentValue, 
-        enterCommentLine, submitCommentLine} = this.props;*/
+    if (!loggedIn) {
+        return (
+            <div className="comment-form-container">
+                <p>
+                    <a href="/login">Log in</a> to Comment!
+                </p>
+            </div>
+        );
+    }
 
-    return(
+    const sendComment = async () => {
+        const timestamp = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString(
+            [],
+            { hour: '2-digit', minute: '2-digit' }
+        )}`;
+        const { status, ...data } = await apiPost('/post/comment/add', {
+            postId,
+            content: comment,
+            timestamp,
+            commentId: uuidv4(),
+            userId: user.id,
+        });
+        if (status === 200) {
+            setComment('');
+        } else {
+            alert('Error adding comment');
+        }
+    };
+
+    return (
         <form>
             <div className="comment-form-container">
-            <style>{`.comment-form-container{ margin-left:auto; margin-right:auto; justify-content: center; align-items: center;`}</style>
-            <Grid container justifyContent="center"   alignItems="center">
-                <TextField fullWidth id="filled-multiline-flexible" placeholder="Type Comment" multiline rows={3}/>
-                    <Grid item xs={3}><Button type='RED' text='Post Comment' /></Grid>
-            </Grid>
+                <Grid container justifyContent="center" alignItems="center">
+                    <TextField
+                        fullWidth
+                        id="filled-multiline-flexible"
+                        placeholder="Type Comment"
+                        multiline
+                        rows={3}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                    />
+                    <Grid item xs={3}>
+                        <Button
+                            type="RED"
+                            text="Post Comment"
+                            onClick={sendComment}
+                        />
+                    </Grid>
+                </Grid>
             </div>
         </form>
-    )
+    );
 }

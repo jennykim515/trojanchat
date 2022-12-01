@@ -1,6 +1,6 @@
 export const __DEV__ = process.env.NODE_ENV === 'development';
 const apiUrl = __DEV__
-    ? 'http://localhost:8080/api'
+    ? 'https://trojanchat.wl.r.appspot.com/api'
     : 'https://trojanchat.wl.r.appspot.com/api'
 
 const constructUrl = (path, params) => {
