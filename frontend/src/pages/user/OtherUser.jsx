@@ -2,80 +2,83 @@ import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import { AppContext } from '../../App'
+import {Link} from 'react-router-dom';
+import { useApp } from '../../App';
+import "../user/OtherUser.css"
 
-const data = {
-    employeeId:'01',
-    username: 'John Doe',
-    email: 'johndoe@email.com',
-    major: 'Frontend Developer',
-    graduation: 'something'
+export default function UserProfile({ props }) {
+
+  const { apiPost, user } = useApp();
+
+  const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
+  const [emailValue, setEmail] = useState(user.email);
+  const [majorValue, setMajor] = useState(user.major);
+  const [gradValue, setGrad] = useState(user.graduationYear);
+  const [usernameValue, setUsername] = useState(user.username);
+
+
+ useEffect(()=>{
+
+  fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=someUUID')
+  .then(response=> response.json())
+  .then(data =>{
+
+     setEmail(data.email);
+     setMajor(data.major);
+     setGrad(data.graduationYear)
+     setUsername(data.username)
+    console.log(data)
+  })
+
+ },[])
+ 
+  const formHandler = async (e) => {
+      e.preventDefault();
+
+      const { status } = await apiPost('/account/update', {
+          email: emailValue,
+          major: majorValue,
+          graduation: gradValue,
+          username: usernameValue,
+      });
+
+      if (status === 200) {
+          console.log('success');
+      } else {
+          console.log('fail');
+      }
+  };
+  function toggleEmail() {
+      setEmailInput(!emailInput);
   }
-
-export default function OtherUser({props}) {
-
-  const [employeeData, setEmployeeData] = useState(data)
-
-    const [emailInput, setEmailInput] = useState(true) //thi shide/show inputfield
-    const [emailValue, setEmail] = useState(data.email)
-    const [majorValue, setMajor] = useState('')
-    const [gradValue, setGrad] = useState('')
-    const [usernameValue, setUsername] = useState(data.username)
-
-
-/*    useEffect(()=> {
-         //tis will run when your page loads  
-         fetch('url')
-         .then( response => response.json())
-         .then(data => {
-          console.log('my data', data);
-         
-            setUsername(data.username)
-            setEmail(data.email)
-            setMajor(data.major)
-            setGrad(data.graduation)            
-         })
-
-    },[])
-
-    */
-
-  const { user } = useContext(AppContext)
-
 
   return (
     <Container>
-      <h1>{user.name}'s Profile</h1>
-      <d1>Double click on text to edit major or graduation year. </d1>
+      <h1 id = "title">{usernameValue}'s Profile</h1>
      <table>
          <tr>
-             <td>Username: </td>
+             <td>Username: </td>        
              <td>{usernameValue}</td>
          </tr>
          <tr>
-             <td>Email: </td>
-             <td>
-                 {emailValue}
-             </td>
+             <td> Major:</td>
+             <td>{majorValue}</td>    
          </tr>
-         <tr>
-             <td>
-                Major:
-             </td>
-             <td>
-                {majorValue}
-             </td>
-         </tr>
-         
-         <tr>
-             <td>
-                Graduation Year:
-             </td>
-             <td>
-              {gradValue}
-             </td>
+         <tr>  
+             <td>Graduation Year:</td> 
+             <td>{gradValue}</td>    
          </tr>
      </table>
-
+    <Link to="/profile/mythreads">
+    <button className="btn3">User's Threads</button>
+    </Link>
+    <Link to="/somelink">
+    <button className="btn4">User's Comments</button>
+    </Link>
+    <br/>
+    <Link to="/somelink">
+    <button className="btn5">Return to Navigation</button>
+    </Link>
       <br/>
       <br/><br/><br/><br/><br/>
     </Container>

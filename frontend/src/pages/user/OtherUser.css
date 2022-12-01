@@ -1,0 +1,77 @@
+table{
+ 
+
+}
+
+#title{
+  text-align: center;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: auto;
+  font-size: 50px;
+}
+
+table{
+  background-color: #ffd25f;
+  margin: auto;
+  top: 32vh;
+  width: 66%;
+  height: 300px;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.17);
+  border-radius: 100px;
+  margin-top: 50px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+.btn3{
+    background-color: #6A1F1F;
+    padding: 10px;
+    min-width: 300px;
+    min-height: 70px;
+    border-radius: 30px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    margin-bottom: -30px;
+    margin-top: 0px;
+    font-size: 17px;
+    margin-left: 220px;
+}
+
+.btn4{
+    background-color: #6A1F1F;
+    padding: 10px;
+    min-width: 300px;
+    min-height: 70px;
+    border-radius: 30px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    margin-bottom: -30px;
+    margin-top: 30px;
+    font-size: 17px;
+    margin-left: 120px;
+}
+
+.btn5{
+    background-color: white;
+    padding: 20px;
+    min-width: 400px;
+    min-height: 70px;
+    border-radius: 30px;
+    border-width: 5px;
+    border-color: #6A1F1F;
+    display: inline-block;
+    color: #6A1F1F;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: -100px;
+    margin-top: 100px;
+    margin-left: 400px;
+    margin-right: auto;
+}
