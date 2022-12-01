@@ -5,17 +5,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import '../signup/SignUp.css';
+import Tag from '../../components/tagShape/Tag';
 import { AppContext } from '../../App';
 
 //maybe add is loading feature
 //add navbar component later
 export default function SignUp() {
     const { setNavType } = useContext(AppContext);
-
-    useEffect(() => {
-        setNavType(1); // set type to registration
-    }, []);
-
+    setNavType(1); // set type to registration
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
