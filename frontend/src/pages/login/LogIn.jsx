@@ -56,9 +56,35 @@ export default function LogIn() {
                 <TextField id="outlined-basic"  type={"password"} name="password" label="Password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} required /> 
             </Box>
             <span id="span2"> 
-                <Button variant="contained" type="submit" onClick={handleSubmit} style={{backgroundColor: "#6A1F1F"}} > Login </Button>
+                <Button variant="contained" type="submit" onClick={() => handleSubmit()}
+                sx={{width: '100%',
+                    height: '50px',
+                    color: 'white',
+                    backgroundColor: '#6A1F1F',
+                    fontSize: '15px',
+                    fontFamily: 'Helvetica',
+                    borderRadius: '40px',
+                    cursor: 'pointer',
+                    transitionDuration: '0.4s',
+                    "&:hover": {
+                        backgroundColor: '#FFD25F'
+                    }}} 
+                > Login </Button>
                 <p id="or"> or </p>
-                <Button variant="contained" type="submit" onClick={handleSubmit} style={{backgroundColor: "#6A1F1F"}} > Create an Account </Button>
+                <Button variant="contained" type="submit" onClick={() => handleSubmit()}
+                    sx={{width: '100%',
+                    height: '50px',
+                    color: 'white',
+                    backgroundColor: '#6A1F1F',
+                    fontSize: '15px',
+                    fontFamily: 'Helvetica',
+                    borderRadius: '30px',
+                    cursor: 'pointer',
+                    transitionDuration: '0.4s',
+                        "&:hover": {
+                            backgroundColor: '#FFD25F'
+                        }}}
+                > Create an Account </Button>
             </span>
             </form>
         </div>
