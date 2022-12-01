@@ -117,12 +117,8 @@ function App() {
             <BrowserRouter>
             <Navbar navType={navType} setNavType={setNavType} />
                 <Routes>
-                    <Route path="/login" element={<LogIn />}>
-                        {' '}
-                    </Route>
-                    <Route path="/signup" element={<SignUp />}>
-                        {' '}
-                    </Route>
+                    <Route path="/login" element={<LogIn />}></Route>
+                    <Route path="/signup" element={<SignUp />}></Route>
 
                     {/* If signed in */}
                     <Route path="" element={<MainNavigation />} />
