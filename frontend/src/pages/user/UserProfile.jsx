@@ -4,12 +4,14 @@ import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import "../user/UserProfile.css"
 import { useApp } from '../../App';
+import { AppContext } from '../../App';
 
 
 export default function UserProfile({ props }) {
 
     const { apiPost, user } = useApp();
-
+    const { setNavType } = useContext(AppContext)
+    setNavType(2); // set type to profile
     const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
     const [emailValue, setEmail] = useState(user.email);
     const [majorValue, setMajor] = useState(user.major);

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Comment from '../components/Comment';
 import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import AddComment from '../components/AddComment';
+import { AppContext } from '../App';
 
 /*
     Displays all comments of a particular thread
@@ -36,6 +37,8 @@ const DEFAULT_DATA = {
 export default function CommentList() {
     let { thread } = useParams();
     const { apiGet } = useApp();
+    const { setNavType } = useContext(AppContext)
+    setNavType(3); // set type to comments
 
     const [PostData, setPostData] = useState({});
     const post = PostData.post;
@@ -43,7 +46,6 @@ export default function CommentList() {
 
     useEffect(() => {
         getPostData();
-        console.log('THREAD', thread);
     }, [thread]);
 
     const getPostData = async () => {
@@ -54,7 +56,6 @@ export default function CommentList() {
                     data[key] = JSON.parse(data[key]);
                 }
             });
-            console.log('DATA', data);
             setPostData(data);
         } else {
             setPostData(DEFAULT_DATA);
@@ -94,10 +95,3 @@ export default function CommentList() {
         </Container>
     );
 }
-
-/*{PostData.map((comment, i) => {
-    return (<Comment 
-        key={i}
-        commentInfo={comment}
-    />)
-})}*/

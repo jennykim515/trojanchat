@@ -37,7 +37,6 @@ export default function UserThreads() {
             </div>
             
             {threadData && (Object.keys(threadData).map((key, i) => {
-                console.log(threadData)
                 return <Thread key={i} threadInfo={threadData[key]} />
             }))}
 

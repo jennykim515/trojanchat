@@ -1,14 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useNavigate, Link} from 'react-router-dom';
 import { useEffect } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "../signup/SignUp.css"
+import { AppContext } from '../../App';
 
 //maybe add is loading feature 
 //add navbar component later 
 export default function SignUp() {
+    const { setNavType } = useContext(AppContext)
+    setNavType(1); // set type to registration
     const [email, setEmail] = React.useState(''); 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -29,11 +32,11 @@ export default function SignUp() {
     }, [email])
 
     useEffect( () => {
-        if(password.length == 0 || passwordConfirm.length == 0){
+        if(password.length === 0 || passwordConfirm.length === 0){
             setPasswordMatch(true);
             setEnableSubmit(false);  
         }
-        else if(password != passwordConfirm){
+        else if(password !== passwordConfirm){
             setPasswordMatch(false); 
             setEnableSubmit(false);  
         }
