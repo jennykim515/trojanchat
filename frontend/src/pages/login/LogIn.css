@@ -58,19 +58,14 @@
   width: 50%;
   padding: 10px;
   text-align: center;
-  border: 10px solid #6a1f1f;
   zoom: 1.2;
-  margin-top: 35vh;
+  margin-top: 32vh;
   margin-bottom: 12vh;
 }
 
-#logInForm {
-  margin-top: 2vh;
-}
-
 #or {
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin-left: 3vh;
+  margin-right: 3vh;
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 600;
@@ -78,7 +73,9 @@
 
 #span2 {
   margin-top: 4vh;
-  display: inline-flex;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 #infoInCurvedBox {
