@@ -3,6 +3,7 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "framer-motion": "^7.6.9"
+    "framer-motion": "^7.6.9",
+    "react-spinners": "^0.13.6"
   }
 }
