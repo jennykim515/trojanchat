@@ -62,10 +62,10 @@ function App() {
     return response;
   };
 
-  // Log in the user with the given username and password
-  const logIn = async (username, password) => {
-    const { status, ...user } = await apiGet(
-      `/account/verify?username=${username}&password=${password}`
+    // Log in the user with the given username and password
+    const logIn = async (username, password) => {
+        const { status, ...user } = await apiGet(
+            `/account/verify?username=${username}&password=${password}`
     );
     if (status === 200) {
       const { userId } = user;

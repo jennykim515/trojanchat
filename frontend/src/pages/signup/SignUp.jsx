@@ -6,12 +6,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../signup/SignUp.css";
 import Tag from "../../components/tagShape/Tag";
-import { AppContext } from "../../App";
+import { AppContext, useApp } from "../../App";
 import Navbar from '../../components/navbar/navbar';
+import {v4 as uuidv4} from "uuid"
 
 //maybe add is loading feature
 //add navbar component later
 export default function SignUp() {
+  const {apiPost, logIn} = useApp();
+
   const [email, setEmail] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -43,8 +46,8 @@ export default function SignUp() {
       setPasswordMatch(true);
       setEnableSubmit(true);
     }
-    console.log("password match is", passwordMatch);
-    console.log("enableSubmit is ", enableSubmit);
+    //console.log("password match is", passwordMatch);
+    //console.log("enableSubmit is ", enableSubmit);
   }, [passwordConfirm, password]);
 
     useEffect(() => {
@@ -58,13 +61,29 @@ export default function SignUp() {
             setPasswordMatch(true);
             setEnableSubmit(true);
         }
-        console.log('password match is', passwordMatch);
-        console.log('enableSubmit is ', enableSubmit);
+        //console.log('password match is', passwordMatch);
+        //console.log('enableSubmit is ', enableSubmit);
     }, [passwordConfirm, password]);
 
 
-  const handleSubmit = (e) => {
-    navigate("/")
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const body = {
+      userId: uuidv4(),
+      username,
+      password,
+      email,
+      major: "",
+      graduationYear: 0,
+      posts: []
+    };
+    const { status, ...data } = await apiPost("/account/create", body);
+    if (status===200) {
+      if (await logIn(username,password)) {
+        navigate("/");
+      }
+    }
   };
 
   const [navType, setNavType] = useState(4);
@@ -76,7 +95,7 @@ export default function SignUp() {
           {" "}
           Register for an Account{" "}
         </h3>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <Box
             component="form"
             sx={{
@@ -96,7 +115,7 @@ export default function SignUp() {
             />
           </Box>
           {incorrectEmail ? (
-            <p className="incorrectEntry"> please use USC email</p>
+            <p className="incorrectEntry"> Please use USC email</p>
           ) : null}
 
                     <Box
@@ -163,28 +182,16 @@ export default function SignUp() {
                             *passwords do not match
                         </p>
                     )}
-                    {enableSubmit ? (
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            onClick={() => handleSubmit()}
-                            style={{ backgroundColor: '#6A1F1F' }}
-                        >
-                            {' '}
-                            Sign Up{' '}
-                        </Button>
-                    ) : (
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            onClick={() => handleSubmit()}
-                            style={{ backgroundColor: '#6A1F1F' }}
-                            disabled
-                        >
-                            {' '}
-                            Sign Up{' '}
-                        </Button>
-                    )}
+                      <Button
+                          variant="contained"
+                          type="submit"
+                          onClick={handleSubmit}
+                          style={{ backgroundColor: '#6A1F1F' }}
+                          disabled={!enableSubmit}
+                      >
+                          {' '}
+                          Sign Up{' '}
+                      </Button>
                 </form>
                 <h3 className="SUtext">
                     {' '}

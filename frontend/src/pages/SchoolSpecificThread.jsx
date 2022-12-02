@@ -45,7 +45,6 @@ export default function SchoolSpecificThread() {
         JSON.parse(localStorage.getItem('filters')) || []
     );
     const [pref, setPref] = useState(Boolean(filters.length));
-    console.log(pref);
     const [tempFilters, setTempFilters] = useState(filters);
     const [loading, setLoading] = useState(true);
 
@@ -134,6 +133,7 @@ export default function SchoolSpecificThread() {
                 ) : (
                     <Loading />
                 )}
+                <div style={{height:"4rem"}}/>
             </Container>
         </>
     );

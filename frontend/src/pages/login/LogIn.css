@@ -1,6 +1,5 @@
 body {
     height: 100%;
-    overflow: hidden;
 }
 
 #welcomeDropDown {
@@ -66,15 +65,14 @@ body {
     text-align: center;
     zoom: 1.2;
     margin-top: 30vh;
-    margin-bottom: 12vh;
 }
 
 #or {
-    margin: 1rem;
+    margin: 0.75rem;
     font-family: 'Helvetica Neue';
     font-style: normal;
-    font-weight: 600;
-    font-size: 1.5rem;
+    font-weight: bold;
+    font-size: 1.75rem;
     justify-content: center;
 }
 
@@ -92,4 +90,20 @@ body {
     padding: 25px;
     justify-content: center;
     text-align: center;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+#loginButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+#loginButtons span {
+    width: min-content;
 }

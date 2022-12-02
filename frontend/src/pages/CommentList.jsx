@@ -7,6 +7,7 @@ import AddComment from '../components/AddComment';
 import { AppContext } from '../App';
 import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
+import Upvote from '../components/Upvote';
 
 /*
     Displays all comments of a particular thread
@@ -69,12 +70,23 @@ export default function CommentList() {
         });
     };
 
+    const [votes, setVotes] = useState({});
+    const sendVoteCallback = async (postId, numVotes) => {
+        setVotes(oldVotes=>({
+            ...oldVotes,
+            [postId]: Number(oldVotes[postId]||0)+numVotes
+        }));
+    }
+
     return (
         <>
             <Navbar navType={2} />
             {post ? (
                 <Container>
-                    <h1 className="boardTitle">{post.content}</h1>
+                    <div className="row">
+                        <Upvote post={post} votes={votes} sendVoteCallback={sendVoteCallback} />
+                        <h1 className="boardTitle">{post.content}</h1>
+                    </div>
                     {comments &&
                         comments.map((comment, i) => {
                             return (
