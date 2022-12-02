@@ -2,13 +2,14 @@ import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import { AppContext } from '../../App'
+import Navbar from '../../components/navbar/navbar';
 import {Link} from 'react-router-dom';
 import { useApp } from '../../App';
 import "../user/OtherUser.css"
 
 export default function UserProfile({ props }) {
 
-  const { apiPost, user } = useApp();
+  const { apiPost, user, token, userId } = useApp();
 
   const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
   const [emailValue, setEmail] = useState(user.email);
@@ -16,21 +17,24 @@ export default function UserProfile({ props }) {
   const [gradValue, setGrad] = useState(user.graduationYear);
   const [usernameValue, setUsername] = useState(user.username);
 
+  const TOKEN_KEY = "chatToken";
+  const USER_ID = "userID";
 
- useEffect(()=>{
+  useEffect(()=>{
+    console.log(user, token, userId);
 
-  fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=someUUID')
-  .then(response=> response.json())
-  .then(data =>{
+    //user.id
+    fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=' + user.id)
+    .then(response=> response.json())
+    .then(data =>{
+ 
+       setMajor(data.major);
+       setGrad(data.graduationYear)
+       setUsername(data.username)
+      console.log(data)
+    })
 
-     setEmail(data.email);
-     setMajor(data.major);
-     setGrad(data.graduationYear)
-     setUsername(data.username)
-    console.log(data)
-  })
-
- },[])
+   },[])
  
   const formHandler = async (e) => {
       e.preventDefault();
@@ -51,9 +55,10 @@ export default function UserProfile({ props }) {
   function toggleEmail() {
       setEmailInput(!emailInput);
   }
-
+  const [navType, setNavType] = useState(2);
   return (
-    <Container>
+    <div>
+      <Navbar navType={navType} setNavType={setNavType} />
       <h1 id = "title">{usernameValue}'s Profile</h1>
      <table>
          <tr>
@@ -81,7 +86,7 @@ export default function UserProfile({ props }) {
     </Link>
       <br/>
       <br/><br/><br/><br/><br/>
-    </Container>
+    </div>
   )
 }
 

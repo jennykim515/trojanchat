@@ -32,6 +32,21 @@ export default function SignUp() {
     }
   }, [email]);
 
+  useEffect(() => {
+    if (password.length === 0 || passwordConfirm.length === 0) {
+      setPasswordMatch(true);
+      setEnableSubmit(false);
+    } else if (password !== passwordConfirm) {
+      setPasswordMatch(false);
+      setEnableSubmit(false);
+    } else {
+      setPasswordMatch(true);
+      setEnableSubmit(true);
+    }
+    console.log("password match is", passwordMatch);
+    console.log("enableSubmit is ", enableSubmit);
+  }, [passwordConfirm, password]);
+
     useEffect(() => {
         if (password.length === 0 || passwordConfirm.length === 0) {
             setPasswordMatch(true);
@@ -46,6 +61,7 @@ export default function SignUp() {
         console.log('password match is', passwordMatch);
         console.log('enableSubmit is ', enableSubmit);
     }, [passwordConfirm, password]);
+
 
   const handleSubmit = (e) => {
     navigate("/")

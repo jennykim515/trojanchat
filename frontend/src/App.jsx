@@ -138,6 +138,8 @@ function App() {
                     <Route path={'/profile'} element={<UserProfile />}></Route>
                     <Route path="/profile/mythreads" element={<ChatThread />} />
                     <Route path={'/otheruser'} element={<OtherUser />}></Route>
+
+                    <Route path={'/addthread'} element={<AddThreads />}></Route>
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>
