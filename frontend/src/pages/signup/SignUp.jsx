@@ -12,8 +12,6 @@ import Navbar from '../../components/navbar/navbar';
 //maybe add is loading feature
 //add navbar component later
 export default function SignUp() {
-
-
   const [email, setEmail] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -34,20 +32,20 @@ export default function SignUp() {
     }
   }, [email]);
 
-  useEffect(() => {
-    if (password.length === 0 || passwordConfirm.length === 0) {
-      setPasswordMatch(true);
-      setEnableSubmit(false);
-    } else if (password !== passwordConfirm) {
-      setPasswordMatch(false);
-      setEnableSubmit(false);
-    } else {
-      setPasswordMatch(true);
-      setEnableSubmit(true);
-    }
-    console.log("password match is", passwordMatch);
-    console.log("enableSubmit is ", enableSubmit);
-  }, [passwordConfirm, password]);
+    useEffect(() => {
+        if (password.length === 0 || passwordConfirm.length === 0) {
+            setPasswordMatch(true);
+            setEnableSubmit(false);
+        } else if (password !== passwordConfirm) {
+            setPasswordMatch(false);
+            setEnableSubmit(false);
+        } else {
+            setPasswordMatch(true);
+            setEnableSubmit(true);
+        }
+        console.log('password match is', passwordMatch);
+        console.log('enableSubmit is ', enableSubmit);
+    }, [passwordConfirm, password]);
 
   const handleSubmit = (e) => {
     navigate("/")
@@ -85,95 +83,98 @@ export default function SignUp() {
             <p className="incorrectEntry"> please use USC email</p>
           ) : null}
 
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-basic"
-              name="password_repeat"
-              label="Username"
-              variant="outlined"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </Box>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="outlined-basic"
+                            name="password_repeat"
+                            label="Username"
+                            variant="outlined"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </Box>
 
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-basic"
-              type={"password"}
-              name="password_repeat"
-              label="Password"
-              variant="outlined"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Box>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="outlined-basic"
+                            type={'password'}
+                            name="password_repeat"
+                            label="Password"
+                            variant="outlined"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </Box>
 
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-basic"
-              type={"password"}
-              name="password_repeat"
-              label="Confirm Password"
-              variant="outlined"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              required
-            />
-          </Box>
-          {passwordMatch ? null : (
-            <p className="incorrectEntry"> *passwords do not match</p>
-          )}
-          {enableSubmit ? (
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={() => handleSubmit()}
-              style={{ backgroundColor: "#6A1F1F" }}
-            >
-              {" "}
-              Sign Up{" "}
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={() => handleSubmit()}
-              style={{ backgroundColor: "#6A1F1F" }}
-              disabled
-            >
-              {" "}
-              Sign Up{" "}
-            </Button>
-          )}
-        </form>
-        <h3 className="SUtext">
-          {" "}
-          *must be a USC-associated email address (@usc.edu){" "}
-        </h3>
-      </div>
-    </>
-  );
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="outlined-basic"
+                            type={'password'}
+                            name="password_repeat"
+                            label="Confirm Password"
+                            variant="outlined"
+                            value={passwordConfirm}
+                            onChange={(e) => setPasswordConfirm(e.target.value)}
+                            required
+                        />
+                    </Box>
+                    {passwordMatch ? null : (
+                        <p className="incorrectEntry">
+                            {' '}
+                            *passwords do not match
+                        </p>
+                    )}
+                    {enableSubmit ? (
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={() => handleSubmit()}
+                            style={{ backgroundColor: '#6A1F1F' }}
+                        >
+                            {' '}
+                            Sign Up{' '}
+                        </Button>
+                    ) : (
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            onClick={() => handleSubmit()}
+                            style={{ backgroundColor: '#6A1F1F' }}
+                            disabled
+                        >
+                            {' '}
+                            Sign Up{' '}
+                        </Button>
+                    )}
+                </form>
+                <h3 className="SUtext">
+                    {' '}
+                    *must be a USC-associated email address (@usc.edu){' '}
+                </h3>
+            </div>
+        </>
+    );
 }

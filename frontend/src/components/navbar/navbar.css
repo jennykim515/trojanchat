@@ -20,6 +20,10 @@ body {
     font-family: 'Helvetica';
 }
 
+.navbarcontainer a:after {
+    display: none;
+}
+
 .navbarleft {
     flex: 1;
 }
@@ -27,7 +31,7 @@ body {
 ul {
     height: 100%;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
     gap: 1em;
 }
@@ -47,8 +51,10 @@ nav button {
     color: white;
     padding: 10px;
     background: none;
-	border: none;
-	font: inherit;
+    border: none;
+    font: inherit;
+    transition: all 0.3s;
+    border-radius: 8px;
 }
 
 nav a:hover,
