@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
+import Loading from '../components/Loading';
 
 const DEFAULT_DATA = [
     {
@@ -28,12 +29,17 @@ const DEFAULT_DATA = [
     },
 ];
 
+const NAME_ALIASES = {
+    all: 'All Threads',
+};
+
 export default function SchoolSpecificThread() {
     let { school } = useParams();
     const { apiGet } = useApp();
 
     let [schoolThreads, setSchoolThreads] = useState([]);
     const [filters, setFilters] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // load threads about this particular school
     const getSchoolThreads = async () => {
@@ -46,6 +52,7 @@ export default function SchoolSpecificThread() {
         } else {
             if (__DEV__) setSchoolThreads(DEFAULT_DATA);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -54,19 +61,22 @@ export default function SchoolSpecificThread() {
 
     return (
         <Container>
-            
-            <h1
-                style={{
-                    margin: '12px',
-                    fontFamily: 'Helvetica',
-                    flex: 'flex-start',
-                }}
-            >
-                {school}
+            <h1 className="boardTitle">
+                {NAME_ALIASES[school.toLowerCase()] || school}
             </h1>
-            {Object.values(schoolThreads).map((thread, i) => {
-                return <Thread threadInfo={thread} key={i} />;
-            })}
+
+            {!loading ? (
+                <>
+                    {Object.values(schoolThreads).map((thread, i) => {
+                        return <Thread threadInfo={thread} key={i} />;
+                    })}
+                    {!Object.values(schoolThreads).length && (
+                        <h2>No threads found.</h2>
+                    )}
+                </>
+            ) : (
+                <Loading />
+            )}
         </Container>
     );
 }
