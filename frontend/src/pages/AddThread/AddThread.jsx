@@ -9,82 +9,6 @@ import School from "../../components/School";
 import { useParams, useNavigate } from 'react-router-dom';
 
 
-
-
-export default function AddThreads({ props }) {
-    const { apiPost, user } = useApp();
-    const [loading, setLoading] = useState(false);
-
-    const [titleInput, setTitleInput] = useState('');
-    const [tagInput, setTagInput] = useState('');
-    const [bodyInput, setBodyInput] = useState('');
-
-    const createThread = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-
-        const { status, ...data } = await apiPost('/post/create', {
-            content: titleInput,
-            tags: tagInput.split(' '),
-            postId: uuidv4(),
-            school: 'general',
-            timestamp: getTimestamp(),
-            upvotes: 1,
-            userId: user.userId,
-        });
-        if (status === 200) {
-            window.location = `/all/${data.postId}`;
-        } else {
-            alert('Error creating thread');
-        }
-
-        setLoading(false);
-    };
-
-    return (
-        <Container>
-            <div id="Info">
-                <h1 className="title">Add Thread</h1>
-                <form onSubmit={createThread}>
-                    <fieldset>
-                        <label>Titles: </label>
-                        <input
-                            type="text"
-                            value={titleInput}
-                            onChange={(e) => setTitleInput(e.target.value)}
-                        />
-                    </fieldset>
-                    <fieldset>
-                        <label>Tag: </label>
-                        <input
-                            type="text"
-                            value={tagInput}
-                            onChange={(e) => setTagInput(e.target.value)}
-                        />
-                    </fieldset>
-                    <fieldset>
-                        <label>Body: </label>
-                        <input
-                            type="text"
-                            value={bodyInput}
-                            onChange={(e) => setBodyInput(e.target.value)}
-                        />
-                    </fieldset>
-                    {!loading ? (
-                        <fieldset>
-                            <Button onClick={createThread}>Save Changes</Button>
-                        </fieldset>
-                    ) : (
-                        <Loading />
-                    )}
-                </form>
-                <br />
-            </div>
-        </Container>
-    );
-}
-
 export default function AddThreads({props}) {
 
     const navigate = useNavigate();
@@ -106,7 +30,7 @@ export default function AddThreads({props}) {
     });
     if (status === 200) {
         //window.location = `/all/${data.postId}`;
-        navigate("/" + school);
+        navigate(school);
     } else {
         alert('Error creating thread');
     }

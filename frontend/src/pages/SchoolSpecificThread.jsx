@@ -8,12 +8,8 @@ import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
 import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
-<<<<<<< HEAD
-import {Link} from 'react-router-dom';
-=======
 import AddThreadButton from '../components/AddThreadButton';
 import './SchoolSpecificThread.css';
->>>>>>> main
 
 const DEFAULT_DATA = [
     {
@@ -87,37 +83,6 @@ export default function SchoolSpecificThread() {
 
     return (
         <>
-<<<<<<< HEAD
-         <Navbar navType={navType} setNavType={setNavType} />
-        <Container>
-            <h1
-                style={{
-                    margin: '12px',
-                    fontFamily: 'Helvetica',
-                    flex: 'flex-start',
-                }}
-            >
-                {school}
-            </h1>
-
-            <Link to={"/addthread/" + school}>
-            <button>Create Thread</button>
-            </Link>
-
-            {!loading ? (
-                <>
-                    {Object.values(schoolThreads).map((thread, i) => {
-                        return <Thread threadInfo={thread} key={i} />;
-                    })}
-                    {!Object.values(schoolThreads).length && (
-                        <h2>No threads found.</h2>
-                    )}
-                </>
-            ) : (
-                <Loading />
-            )}
-        </Container>
-=======
             <Navbar navType={1} />
             <Container>
                 <h1 className="boardTitle">{school}</h1>
@@ -170,7 +135,6 @@ export default function SchoolSpecificThread() {
                     <Loading />
                 )}
             </Container>
->>>>>>> main
         </>
     );
 }
