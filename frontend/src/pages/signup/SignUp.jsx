@@ -32,10 +32,6 @@ export default function SignUp() {
     }
   }, [email]);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
   useEffect(() => {
     if (password.length === 0 || passwordConfirm.length === 0) {
       setPasswordMatch(true);
@@ -50,7 +46,7 @@ export default function SignUp() {
     console.log("password match is", passwordMatch);
     console.log("enableSubmit is ", enableSubmit);
   }, [passwordConfirm, password]);
-=======
+
     useEffect(() => {
         if (password.length === 0 || passwordConfirm.length === 0) {
             setPasswordMatch(true);
@@ -65,7 +61,7 @@ export default function SignUp() {
         console.log('password match is', passwordMatch);
         console.log('enableSubmit is ', enableSubmit);
     }, [passwordConfirm, password]);
->>>>>>> d2cfe683bf6ad6dbd987cb8ebf83bdfbc0991456
+
 
   const handleSubmit = (e) => {
     navigate("/")

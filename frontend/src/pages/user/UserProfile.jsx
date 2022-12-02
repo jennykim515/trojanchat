@@ -4,6 +4,10 @@ import Button from "@mui/material/Button";
 import { useApp } from "../../App";
 import { AppContext } from "../../App";
 import Navbar from "../../components/navbar/navbar";
+import "../user/UserProfile.css";
+
+
+
 
 const data = {
   employeeId: "01",
@@ -14,12 +18,18 @@ const data = {
 };
 
 export default function UserProfile({ props }) {
-  const { apiPost, user } = useApp();
+  const { apiPost, user, token, userId} = useApp();
   const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
   const [emailValue, setEmail] = useState(user.email);
   const [majorValue, setMajor] = useState(user.major);
   const [gradValue, setGrad] = useState(user.grad);
   const [usernameValue, setUsername] = useState(user.username);
+
+useEffect(()=>{
+  
+console.log(token, userId, user)
+
+},[])
 
   const formHandler = async (e) => {
     e.preventDefault();
