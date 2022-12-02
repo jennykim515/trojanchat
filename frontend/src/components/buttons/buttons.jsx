@@ -20,9 +20,12 @@ export default function Button(props) {
 
     return (
         <div className="buttoncontainer">
-            <div className={BUTTON_TYPES[type] || 'button'} onClick={onClick}>
+            <button
+                className={BUTTON_TYPES[type] || BUTTON_TYPES.RED}
+                onClick={onClick}
+            >
                 {text}
-            </div>
+            </button>
         </div>
     );
 }

@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useApp } from '../App';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { getTimestamp } from '../utils/time';
 
-export default function AddComment() {
+export default function AddComment({ addComment }) {
     const { apiPost, loggedIn, user } = useApp();
     const [comment, setComment] = useState('');
     const location = useLocation();
@@ -22,19 +23,17 @@ export default function AddComment() {
     }
 
     const sendComment = async () => {
-        const timestamp = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString(
-            [],
-            { hour: '2-digit', minute: '2-digit' }
-        )}`;
-        const { status, ...data } = await apiPost('/post/comment/add', {
+        const timestamp = getTimestamp();
+        const { status, ...data } = await apiPost('/comment/create', {
             postId,
             content: comment,
             timestamp,
             commentId: uuidv4(),
-            userId: user.id,
+            userId: user.username,
         });
         if (status === 200) {
             setComment('');
+            addComment(data);
         } else {
             alert('Error adding comment');
         }
