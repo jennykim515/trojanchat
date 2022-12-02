@@ -110,40 +110,82 @@ function App() {
                 });
         }
     }, []);
+    
+    if (status === 200) {
+      const { userId } = user;
+      const newToken = `${username}+${password}`;
+      localStorage.setItem(TOKEN_KEY, newToken);
+      localStorage.setItem(USER_ID, userId);
+      setToken(newToken);
+      setUserId(userId);
+      setUser(user);
+      return true;
+    }
 
-    return (
-        <AppContext.Provider
-            value={{
-                apiGet,
-                apiPost,
-                logIn,
-                loggedIn,
-                logOut,
-                user,
-                navType,
-                setNavType,
-            }}
-        >
-            <BrowserRouter>
-                {/* <Navbar navType={navType} setNavType={setNavType} /> */}
-                <Routes>
-                    <Route path="/login" element={<LogIn />}></Route>
-                    <Route path="/signup" element={<SignUp />}></Route>
+    return false;
+  };
 
-                    {/* If signed in */}
-                    <Route path="" element={<MainNavigation />} />
-                    <Route path="/:school" element={<SchoolSpecificThread />} />
-                    <Route path="/:school/:thread" element={<CommentList />} />
+  // Log out the user
+  const logOut = () => {
+    apiPost("/auth/logout");
+    localStorage.removeItem(TOKEN_KEY);
+    setToken("");
+    setUser(null);
+    // window.location.reload();
 
-                    <Route path={'/profile'} element={<UserProfile />}></Route>
-                    <Route path="/profile/mythreads" element={<ChatThread />} />
-                    <Route path={'/otheruser'} element={<OtherUser />}></Route>
+  };
 
-                    <Route path={'/addthread'} element={<AddThreads />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </AppContext.Provider>
-    );
+  // Fetch the user when the page is loaded if we have a token
+  useEffect(() => {
+    if (loggedIn) {
+      apiGet(`/account/view?id=${userId}`)
+        .then(({ status, ...user }) => {
+          if (status !== 200) throw new Error("Failed to fetch user");
+          setUser(user);
+          console.log(user);
+        })
+        .catch((e) => {
+          console.error(e);
+          logOut();
+        });
+    }
+  }, []);
+
+  return (
+    <AppContext.Provider
+      value={{
+        apiGet,
+        apiPost,
+        logIn,
+        loggedIn,
+        logOut,
+        user,
+        navType,
+        setNavType,
+      }}
+    >
+      <BrowserRouter>
+        {/* <Navbar navType={navType} setNavType={setNavType} /> */}
+        <Routes>
+          <Route path="/login" element={<LogIn />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+
+          {/* If signed in */}
+          <Route path="" element={<MainNavigation />} />
+          <Route path="/:school" element={<SchoolSpecificThread />} />
+          <Route path="/:school/:thread" element={<CommentList />} />
+
+          <Route path={"/profile"} element={<UserProfile />}></Route>
+          <Route path="/profile/mythreads" element={<ChatThread />} />
+          <Route path={"/otheruser"} element={<OtherUser />}></Route>
+
+          <Route path={"/addthread/:school"} element={<AddThread/>}></Route>
+
+
+        </Routes>
+      </BrowserRouter>
+    </AppContext.Provider>
+  );
 }
 
 export default App;
