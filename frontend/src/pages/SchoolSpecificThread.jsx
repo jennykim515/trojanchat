@@ -9,6 +9,7 @@ import Button from '../components/buttons/buttons';
 import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
 import AddThreadButton from '../components/AddThreadButton';
+import './SchoolSpecificThread.css';
 
 const DEFAULT_DATA = [
     {
@@ -40,7 +41,12 @@ export default function SchoolSpecificThread() {
     const { apiGet } = useApp();
 
     let [schoolThreads, setSchoolThreads] = useState([]);
-    const [filters, setFilters] = useState([]);
+    const [filters, setFilters] = useState(
+        JSON.parse(localStorage.getItem('filters')) || []
+    );
+    const [pref, setPref] = useState(Boolean(filters.length));
+    console.log(pref);
+    const [tempFilters, setTempFilters] = useState(filters);
     const [loading, setLoading] = useState(true);
 
     // load threads about this particular school
@@ -60,21 +66,70 @@ export default function SchoolSpecificThread() {
     useEffect(() => {
         getSchoolThreads();
     }, [filters, school]);
+
+    useEffect(() => {
+        if (tempFilters.length) {
+            const timeout = setTimeout(() => {
+                const newVal = tempFilters[0] !== '' ? tempFilters : [];
+                setFilters(newVal);
+
+                if (pref) {
+                    localStorage.setItem('filters', JSON.stringify(newVal));
+                }
+            }, 300);
+            return () => clearTimeout(timeout);
+        }
+    }, [tempFilters, pref]);
+
     return (
         <>
             <Navbar navType={1} />
             <Container>
                 <h1 className="boardTitle">{school}</h1>
-
+                <div id="filterContainer">
+                    <div id="filterTagContainer">
+                        <p>Filter by tag:</p>
+                        <input
+                            placeholder="ex: csci"
+                            value={tempFilters[0] || ''}
+                            onChange={(e) => {
+                                setTempFilters([e.target.value]);
+                            }}
+                        />
+                    </div>
+                    <div id="filterPref">
+                        <p>Set as preference:</p>
+                        <input
+                            type="checkbox"
+                            value={pref}
+                            defaultChecked={pref}
+                            onChange={(e) => {
+                                if (pref) {
+                                    setPref(0);
+                                    localStorage.removeItem('filters');
+                                } else {
+                                    setPref(1);
+                                    localStorage.setItem(
+                                        'filters',
+                                        JSON.stringify(filters)
+                                    );
+                                }
+                            }}
+                        />
+                    </div>
+                    <div className="right">
+                        <AddThreadButton />
+                    </div>
+                </div>
                 {!loading ? (
                     <>
+                        <div id="filterContainer"></div>
                         {Object.values(schoolThreads).map((thread, i) => {
                             return <Thread threadInfo={thread} key={i} />;
                         })}
                         {!Object.values(schoolThreads).length && (
                             <h2>No threads found.</h2>
                         )}
-                        <AddThreadButton />
                     </>
                 ) : (
                     <Loading />

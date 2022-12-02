@@ -37,7 +37,7 @@ const Navbar = ({ navType }) => {
             navButton = (
                 <li
                     onClick={() => {
-                        navigateOneLevelUp();
+                        navigate('/');
                     }}
                 >
                     <Button type="WHITE" text="Return to Navigation" />
@@ -67,18 +67,25 @@ const Navbar = ({ navType }) => {
             <nav>
                 <ul>
                     {navButton}
-                    <li>
-                        <a href="/profile">Profile</a>
-                    </li>
                     {loggedIn && (
-                        <li>
-                            <button onClick={logOut}>Logout</button>
-                        </li>
+                        <>
+                            <li>
+                                <button onClick={logOut}>Logout</button>
+                            </li>
+                            <li>
+                                <a href="/profile">Profile</a>
+                            </li>
+                        </>
                     )}
                     {!loggedIn && (
-                        <li>
-                            <a href="/login">Login</a>
-                        </li>
+                        <>
+                            <li>
+                                <a href="/login">Login</a>
+                            </li>
+                            <li>
+                                <a href="/signup">Signup</a>
+                            </li>
+                        </>
                     )}
                 </ul>
             </nav>

@@ -7,7 +7,7 @@ export default function AddThreadButton() {
 
     if (!loggedIn) {
         return (
-            <div className="comment-form-container margin-top">
+            <div className="comment-form-containerp">
                 <p>
                     <a href="/login">Log in</a> to add a Thread!
                 </p>
@@ -16,10 +16,8 @@ export default function AddThreadButton() {
     }
 
     return (
-        <div className="loading">
-            <Button onClick={() => (window.location = '/addthread')} type="RED">
-                Create Thread
-            </Button>
-        </div>
+        <Button onClick={() => (window.location = '/addthread')} type="RED">
+            Create Thread
+        </Button>
     );
 }
