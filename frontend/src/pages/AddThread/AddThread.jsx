@@ -13,6 +13,8 @@ export default function AddThreads({props}) {
 
     const navigate = useNavigate();
     let { school } = useParams();
+    const [schools, setSchools] = useState([]);
+    const [loading, setLoading] = useState(true);
     const { apiPost, user, token, userId, apiGet } = useApp();
     const [titleInput, setTitleInput] = useState(""); 
     const [tagInput, setTagInput] = useState(""); 
@@ -30,7 +32,7 @@ export default function AddThreads({props}) {
     });
     if (status === 200) {
         //window.location = `/all/${data.postId}`;
-        navigate(school);
+        navigate(`/${"/" + school}`);
     } else {
         alert('Error creating thread');
     }
