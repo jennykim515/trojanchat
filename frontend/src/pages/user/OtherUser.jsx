@@ -59,7 +59,7 @@ export default function UserProfile({ props }) {
   return (
     <div>
       <Navbar navType={navType} setNavType={setNavType} />
-      <h1 id = "title">{usernameValue}'s Profile</h1>
+      <h1 id = "title">{usernameValue} Profile</h1>
      <table>
          <tr>
              <td>Username: </td>        
@@ -75,12 +75,11 @@ export default function UserProfile({ props }) {
          </tr>
      </table>
     <Link to="/profile/mythreads">
-    <button className="btn3">User's Threads</button>
+    <button className="btn3">{usernameValue}'s Threads</button>
     </Link>
     <Link to="/somelink">
-    <button className="btn4">User's Comments</button>
+    <button className="btn4">{usernameValue}'s Comments</button>
     </Link>
-    <br/>
     <Link to="/somelink">
     <button className="btn5">Return to Navigation</button>
     </Link>

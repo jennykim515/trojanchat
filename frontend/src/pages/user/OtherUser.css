@@ -15,7 +15,7 @@ table{
   width: 66%;
   height: 300px;
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.17);
-  border-radius: 100px;
+  border-radius: 50px;
   margin-top: 50px;
   font-family: "Helvetica Neue";
   font-style: normal;
@@ -37,7 +37,7 @@ table{
     margin-bottom: -30px;
     margin-top: 0px;
     font-size: 17px;
-    margin-left: 220px;
+    margin-left: 370px;
 }
 
 .btn4{
@@ -52,7 +52,7 @@ table{
     margin-bottom: -30px;
     margin-top: 30px;
     font-size: 17px;
-    margin-left: 120px;
+    margin-left: 100px;
 }
 
 .btn5{
@@ -67,8 +67,8 @@ table{
     color: #6A1F1F;
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: -100px;
     margin-top: 100px;
-    margin-left: 400px;
+    margin-bottom: -400px;
+    margin-left: 530px;
     margin-right: auto;
 }
