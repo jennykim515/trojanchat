@@ -19,6 +19,7 @@ import { internal_apiGet, internal_apiPost } from "./utils/network";
 import OtherUser from "./pages/user/OtherUser";
 import CommentList from "./pages/CommentList";
 import { useNavigate } from "react-router-dom";
+import AddThread from "./pages/AddThread/AddThread";
 
 export const AppContext = createContext({});
 
@@ -133,6 +134,10 @@ function App() {
           <Route path={"/profile"} element={<UserProfile />}></Route>
           <Route path="/profile/mythreads" element={<ChatThread />} />
           <Route path={"/otheruser"} element={<OtherUser />}></Route>
+
+          <Route path={"/addthread"} element={<AddThread/>}></Route>
+
+
         </Routes>
       </BrowserRouter>
     </AppContext.Provider>

@@ -10,12 +10,8 @@ export default function AddThreads({props}) {
     const [tagInput, setTagInput] = useState(""); 
     const [bodyInput, setBodyInput] = useState(""); 
 
-
-    
     const formHandler = async (e) => {
-
     }
-
 
 return (
     <Container>
