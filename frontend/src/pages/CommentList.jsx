@@ -6,6 +6,7 @@ import { useApp } from '../App';
 import AddComment from '../components/AddComment';
 import { AppContext } from '../App';
 import Navbar from '../components/navbar/navbar';
+import Loading from '../components/Loading';
 
 /*
     Displays all comments of a particular thread
@@ -61,7 +62,6 @@ export default function CommentList() {
         }
     };
 
-    const [navType, setNavType] = useState(0);
     const addComment = (comment) => {
         setPostData({
             ...PostData,
@@ -69,30 +69,32 @@ export default function CommentList() {
         });
     };
 
-    if (!post) return null;
-
     return (
         <>
-            <Navbar navType={navType} setNavType={setNavType} />
-            <Container>
-                <h1 className="boardTitle">{post.content}</h1>
-                {comments &&
-                    comments.map((comment, i) => {
-                        return (
-                            <div
-                                key={
-                                    post.postId +
-                                    comment.commenterUserName +
-                                    comment.commentId
-                                }
-                            >
-                                <Comment commentInfo={comment} />
-                            </div>
-                        );
-                    })}
-                <br></br>
-                <AddComment addComment={addComment} />
-            </Container>
+            <Navbar navType={2} />
+            {post ? (
+                <Container>
+                    <h1 className="boardTitle">{post.content}</h1>
+                    {comments &&
+                        comments.map((comment, i) => {
+                            return (
+                                <div
+                                    key={
+                                        post.postId +
+                                        comment.commenterUserName +
+                                        comment.commentId
+                                    }
+                                >
+                                    <Comment commentInfo={comment} />
+                                </div>
+                            );
+                        })}
+                    <br></br>
+                    <AddComment addComment={addComment} />
+                </Container>
+            ) : (
+                <Loading />
+            )}
         </>
     );
 }

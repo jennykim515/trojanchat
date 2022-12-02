@@ -60,10 +60,9 @@ export default function SchoolSpecificThread() {
     useEffect(() => {
         getSchoolThreads();
     }, [filters, school]);
-    const [navType, setNavType] = useState(0);
     return (
         <>
-            <Navbar navType={navType} setNavType={setNavType} />
+            <Navbar navType={1} />
             <Container>
                 <h1 className="boardTitle">{school}</h1>
 
