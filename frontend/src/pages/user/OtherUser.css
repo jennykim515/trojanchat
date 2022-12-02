@@ -1,9 +1,7 @@
-
-
 #title{
   text-align: center;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: 25px;
   margin-bottom: auto;
   font-size: 50px;
 }
@@ -13,10 +11,10 @@ table{
   margin: auto;
   top: 32vh;
   width: 66%;
-  height: 300px;
+  height: 260px;
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.17);
   border-radius: 50px;
-  margin-top: 50px;
+  margin-top: 20px;
   font-family: "Helvetica Neue";
   font-style: normal;
   font-weight: 400;
@@ -24,21 +22,20 @@ table{
   text-align: center;
 }
 
-
-.btn3{
-    background-color: #6A1F1F;
-    padding: 10px;
-    min-width: 300px;
-    min-height: 70px;
-    border-radius: 30px;
-    display: inline-block;
-    color: white;
-    font-weight: bold;
-    margin-bottom: -30px;
-    margin-top: 0px;
-    font-size: 17px;
-    margin-left: 370px;
+.span2 {
+  margin-top: 5vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
+
+.redbuttoncontainer{
+    width: 50%;
+    width: 50%;
+    margin: auto;
+}
+
 
 .btn4{
     background-color: #6A1F1F;

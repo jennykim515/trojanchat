@@ -1,9 +1,10 @@
+
 import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import { AppContext } from '../../App'
 import Navbar from '../../components/navbar/navbar';
-import {Link} from 'react-router-dom';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 import { useApp } from '../../App';
 import "../user/OtherUser.css"
 
@@ -16,6 +17,8 @@ export default function UserProfile({ props }) {
   const [majorValue, setMajor] = useState(user.major);
   const [gradValue, setGrad] = useState(user.graduationYear);
   const [usernameValue, setUsername] = useState(user.username);
+
+  const navigate = useNavigate();
 
   const TOKEN_KEY = "chatToken";
   const USER_ID = "userID";
@@ -55,9 +58,9 @@ export default function UserProfile({ props }) {
   function toggleEmail() {
       setEmailInput(!emailInput);
   }
-  const [navType, setNavType] = useState(2);
+  const [navType, setNavType] = useState(0);
   return (
-    <div>
+    <div className="wholecontainer">
       <Navbar navType={navType} setNavType={setNavType} />
       <h1 id = "title">{usernameValue} Profile</h1>
      <table>
@@ -74,18 +77,64 @@ export default function UserProfile({ props }) {
              <td>{gradValue}</td>    
          </tr>
      </table>
-    <Link to="/profile/mythreads">
-    <button className="btn3">{usernameValue}'s Threads</button>
-    </Link>
-    <Link to="/somelink">
-    <button className="btn4">{usernameValue}'s Comments</button>
-    </Link>
-    <Link to="/somelink">
-    <button className="btn5">Return to Navigation</button>
-    </Link>
+    <div className="redbuttoncontainer">
+      <div className="span2">
+        <Button variant="contained" onClick={() => {navigate('/profile/mythreads')}}
+                sx={{
+                  width: '100%',
+                  height: '50px',
+                  color: 'white',
+                  backgroundColor: '#6A1F1F',
+                  fontSize: '16px',
+                  fontFamily: 'Helvetica',
+                  marginRight: '60px',
+                  borderRadius: '40px',
+                  cursor: 'pointer',
+                  transitionDuration: '0.4s',
+                  '&:hover': {
+                      backgroundColor: '#FFD25F',
+                  },
+              }}
+        >{usernameValue}'s Threads</Button>
+        <Button variant="contained" onClick={() => {navigate('/somelink')}}
+                sx={{
+                  width: '100%',
+                  height: '50px',
+                  color: 'white',
+                  backgroundColor: '#6A1F1F',
+                  fontSize: '16px',
+                  fontFamily: 'Helvetica',
+                  borderRadius: '40px',
+                  cursor: 'pointer',
+                  transitionDuration: '0.4s',
+                  '&:hover': {
+                      backgroundColor: '#FFD25F',
+                  },
+              }}
+        >{usernameValue}'s Comments</Button>
+      </div>
+
+    <Button variant="outlined" onClick={() => {navigate('/somelink')}}
+                sx={{
+                  width: '100%',
+                  height: '50px',
+                  margin: '18px 0px 0px 0px',
+                  color: '#6A1F1F',
+                  backgroundColor: '#white',
+                  borderColor: '#6A1F1F',
+                  fontSize: '16px',
+                  fontFamily: 'Helvetica',
+                  borderRadius: '40px',
+                  cursor: 'pointer',
+                  transitionDuration: '0.4s',
+                  '&:hover': {
+                      backgroundColor: '#FFD25F',
+                  },
+              }}
+        >Return to Navigation</Button>
+      </div>
       <br/>
       <br/><br/><br/><br/><br/>
     </div>
   )
 }
-
