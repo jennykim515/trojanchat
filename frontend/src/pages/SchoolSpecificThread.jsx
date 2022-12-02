@@ -8,6 +8,7 @@ import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
 import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
+import {Link} from 'react-router-dom';
 
 const DEFAULT_DATA = [
     {
@@ -73,6 +74,10 @@ export default function SchoolSpecificThread() {
             >
                 {school}
             </h1>
+
+            <Link to={"/addthread/" + school}>
+            <button>Create Thread</button>
+            </Link>
 
             {!loading ? (
                 <>

@@ -2,24 +2,65 @@ import { useState, useContext, useEffect } from "react";
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import { useApp } from '../../App';
+import Navbar from '../../components/navbar/navbar';
+import "../AddThread/AddThread.css";
+import { v4 as uuidv4 } from 'uuid';
+import School from "../../components/School";
+import { useParams, useNavigate } from 'react-router-dom';
+
+
+
 
 
 export default function AddThreads({props}) {
 
+    const navigate = useNavigate();
+    let { school } = useParams();
+    const { apiPost, user, token, userId, apiGet } = useApp();
     const [titleInput, setTitleInput] = useState(""); 
     const [tagInput, setTagInput] = useState(""); 
     const [bodyInput, setBodyInput] = useState(""); 
 
     const formHandler = async (e) => {
+      const { status, ...data } = await apiPost('/post/create', {
+        content: titleInput,
+        tags: tagInput.split(' '),
+        postId: uuidv4(),
+        school: school,
+        timestamp: Date.now(),
+        upvotes: 1,
+        userId: user.userId,
+    });
+    if (status === 200) {
+        //window.location = `/all/${data.postId}`;
+        navigate("/" + school);
+    } else {
+        alert('Error creating thread');
+    }
     }
 
+    useEffect(()=>{
+      console.log(user, token, userId);
+  
+      //user.id
+      fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=' + user.id)
+      .then(response=> response.json())
+      .then(data =>{
+        console.log(data)
+      })
+  
+     },[])
+
+  
+    const [navType, setNavType] = useState(2);
+
 return (
-    <Container>
       <div id = "Info">
-      <h1 className="title">Add Thread</h1>
+      <Navbar navType={navType} setNavType={setNavType} />
+      <h1 id = "title"> Create New Thread in USC - {school}</h1>
       <form onSubmit={formHandler}>
         <fieldset>
-          <label >Titles: </label>
+          <label id="title">Titles: </label>
           <input 
                         type="text" 
                         value={titleInput} 
@@ -49,7 +90,5 @@ return (
       <br/>
       <br/><br/><br/><br/><br/>
       </div>
-    </Container>
-
   )
   }
