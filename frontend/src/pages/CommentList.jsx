@@ -1,92 +1,89 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Comment from '../components/Comment';
-import Container from '@mui/material/Container';
-import { useApp } from '../App';
-import AddComment from '../components/AddComment';
-import { AppContext } from '../App';
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Comment from "../components/Comment";
+import Container from "@mui/material/Container";
+import { useApp } from "../App";
+import AddComment from "../components/AddComment";
+import { AppContext } from "../App";
+import Navbar from "../components/navbar/navbar";
 
 /*
     Displays all comments of a particular thread
 */
 
 const DEFAULT_DATA = {
-    post: {
-        title: 'post1',
-        userName: 'user0',
-        timeCreated: '11/29/2012',
+  post: {
+    title: "post1",
+    userName: "user0",
+    timeCreated: "11/29/2012",
+  },
+  comments: [
+    {
+      title: "post1",
+      userName: "user1",
+      commentId: "1",
+      timeCreated: "12/01/2012",
+      comment: "hello!",
     },
-    comments: [
-        {
-            title: 'post1',
-            userName: 'user1',
-            commentId: '1',
-            timeCreated: '12/01/2012',
-            comment: 'hello!',
-        },
-        {
-            title: 'post1',
-            userName: 'user2',
-            commentId: '2',
-            timeCreated: '12/02/2012',
-            comment: 'hi!',
-        },
-    ],
+    {
+      title: "post1",
+      userName: "user2",
+      commentId: "2",
+      timeCreated: "12/02/2012",
+      comment: "hi!",
+    },
+  ],
 };
 
 export default function CommentList() {
-    let { thread } = useParams();
-    const { apiGet } = useApp();
-    const { setNavType } = useContext(AppContext);
+  let { thread } = useParams();
+  const { apiGet } = useApp();
 
-    useEffect(() => {
-        setNavType(3);
-    }, []);
+  const [PostData, setPostData] = useState({});
+  const post = PostData.post;
+  const comments = PostData.comments || [];
 
-    const [PostData, setPostData] = useState({});
-    const post = PostData.post;
-    const comments = PostData.comments || [];
+  useEffect(() => {
+    getPostData();
+  }, [thread]);
 
-    useEffect(() => {
-        getPostData();
-    }, [thread]);
-
-    const getPostData = async () => {
-        const { status, ...data } = await apiGet(`/post/view?postId=${thread}`);
-        if (status === 200) {
-            Object.keys(data).forEach((key) => {
-                if (typeof data[key] === 'string') {
-                    data[key] = JSON.parse(data[key]);
-                }
-            });
-            setPostData(data);
-        } else {
-            setPostData(DEFAULT_DATA);
+  const getPostData = async () => {
+    const { status, ...data } = await apiGet(`/post/view?postId=${thread}`);
+    if (status === 200) {
+      Object.keys(data).forEach((key) => {
+        if (typeof data[key] === "string") {
+          data[key] = JSON.parse(data[key]);
         }
-    };
+      });
+      setPostData(data);
+    } else {
+      setPostData(DEFAULT_DATA);
+    }
+  };
 
-    if (!post) return null;
-
-    return (
-        <Container>
-            <h1 className="boardTitle">{post.content}</h1>
-            {comments &&
-                comments.map((comment, i) => {
-                    console.log(comment);
-                    return (
-                        <div
-                            key={
-                                post.postId +
-                                comment.commenterUserName +
-                                comment.commentId
-                            }
-                        >
-                            <Comment commentInfo={comment} />
-                        </div>
-                    );
-                })}
-            <br></br>
-            <AddComment />
-        </Container>
-    );
+  const [navType, setNavType] = useState(3);
+  if (!post) return null;
+  return (
+    <>
+      <Navbar navType={navType} setNavType={setNavType} />
+      <Container>
+        <h1 className="boardTitle">{post.content}</h1>
+        {comments &&
+          comments.map((comment, i) => {
+            console.log(comment);
+            return (
+              <div
+                key={
+                  post.postId + comment.commenterUserName + comment.commentId
+                }
+              >
+                <Comment commentInfo={comment} />
+              </div>
+            );
+          })}
+        <br></br>
+        <AddComment />
+      </Container>
+    </>
+  );
 }
