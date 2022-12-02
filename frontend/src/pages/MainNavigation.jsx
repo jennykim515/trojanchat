@@ -74,6 +74,7 @@ export default function MainNavigation() {
           <Loading />
         )}
       </Container>
+      <div style={{height:"4rem"}}/>
     </>
   );
 }

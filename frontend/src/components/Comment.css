@@ -40,3 +40,14 @@ p {
     font-size: 20px;
     margin: 10px;
 }
+
+.row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.boardTitle {
+    margin-left: 0rem;
+    margin-bottom: 2rem;
+}

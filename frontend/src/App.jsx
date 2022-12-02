@@ -88,11 +88,11 @@ function App() {
 
     // Log out the user
     const logOut = () => {
-        apiPost('/auth/logout');
+        //apiPost('/auth/logout');
         localStorage.removeItem(TOKEN_KEY);
         setToken('');
         setUser(null);
-        // window.location.reload();
+        window.location.reload();
     };
 
     // Fetch the user when the page is loaded if we have a token

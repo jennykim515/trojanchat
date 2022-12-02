@@ -3,10 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import '../login/LogIn.css';
 import { useApp } from '../../App';
 import Bubbles from '../../components/logo/chatbubble';
+import Button from '../../components/buttons/buttons';
 
 export default function LogIn() {
     const { logIn } = useApp();
@@ -14,8 +14,7 @@ export default function LogIn() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
 
         if (username && password && (await logIn(username, password))) {
             window.location = '/';
@@ -83,7 +82,10 @@ export default function LogIn() {
                             required
                         />
                     </Box>
-                    <span id="span2">
+                </form>
+            </div>
+            <div id="loginButtons">
+                    <span id="span2" className='noMargin'>
                         <Button
                             variant="contained"
                             type="submit"
@@ -107,8 +109,30 @@ export default function LogIn() {
                             Login{' '}
                         </Button>
                     </span>
-                </form>
-            </div>
+                    <p id="or">or</p>
+                    <span id="span2" className='noMargin'>
+                        <Button
+                            onClick={() => window.location="/signup"}
+                            sx={{
+                                width: '100%',
+                                height: '50px',
+                                color: 'white',
+                                backgroundColor: '#6A1F1F',
+                                fontSize: '15px',
+                                fontFamily: 'Helvetica',
+                                borderRadius: '40px',
+                                cursor: 'pointer',
+                                transitionDuration: '0.4s',
+                                '&:hover': {
+                                    backgroundColor: '#FFD25F',
+                                },
+                            }}
+                        >
+                            {' '}
+                            Create Account{' '}
+                        </Button>
+                    </span>
+                </div>
         </>
     );
 }

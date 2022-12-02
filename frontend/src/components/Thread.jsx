@@ -2,6 +2,9 @@ import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
 import './Thread.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Upvote from './Upvote';
+import { useState } from 'react';
+import { useApp } from '../App';
 
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
@@ -9,6 +12,15 @@ const Thread = (props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const { apiPost } = useApp();
+
+    const [votes, setVotes] = useState({});
+    const sendVoteCallback = async (postId, numVotes) => {
+        setVotes(oldVotes=>({
+            ...oldVotes,
+            [postId]: Number(oldVotes[postId]||0)+numVotes
+        }));
+    }
 
     return (
         <Card variant="outlined">
@@ -18,6 +30,8 @@ const Thread = (props) => {
                 }}
             >
                 <div className="threads-container">
+                    <Upvote post={threadinfo} votes={votes} sendVoteCallback={sendVoteCallback} />
+                    <div className='threads-text'>
                     <div className="thread-card-top">
                         <h2>{threadinfo.content}</h2>
                     </div>
@@ -29,6 +43,7 @@ const Thread = (props) => {
                         <div className="bottom-right">
                             <p>Time: {threadinfo.timestamp}</p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </CardActionArea>

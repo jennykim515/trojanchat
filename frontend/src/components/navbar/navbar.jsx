@@ -37,7 +37,7 @@ const Navbar = ({ navType }) => {
             navButton = (
                 <li
                     onClick={() => {
-                        navigate('/');
+                        navigateOneLevelUp();
                     }}
                 >
                     <Button type="WHITE" text="Return to Navigation" />

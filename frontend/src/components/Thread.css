@@ -1,37 +1,99 @@
-.threads-container{
-  color: black;
-  width: 100%;
-  font-size: 20px;
-  font-family: 'Helvetica';
-  display: flex;
-  justify-content: space-around;
-  align-items: left;
-  flex-direction: column;
+.threads-container {
+    color: black;
+    width: 100%;
+    height: 5rem;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    font-family: 'Helvetica';
+    display: flex;
+    align-items: left;
+    flex-direction: row;
+    align-items: center;
 }
 
-.thread-card-top{
+.thread-card-top {
     margin: 10px 20px 0;
 }
 
-.thread-card-bottom{
+.thread-card-bottom {
     display: flex;
-      padding-top: 2px;
-      flex-direction: row;
-      justify-content: space-between;
-      margin: 0 20px 10px;
-      flex: 1px;
+    padding-top: 2px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 20px 10px;
+    flex: 1px;
 }
 
-.bottom-left{
-    flex-direction:row;
+.bottom-left {
+    flex-direction: row;
 }
 
-.bottom-right{
-    flex-direction:row;
+.bottom-right {
+    flex-direction: row;
     align-items: right;
 }
 
-
 p {
-    font-size: 17px;
+    font-size: 170px;
+}
+
+.upvoteContainer {
+    margin: 0px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.threads-text {
+    display: inline-block;
+    width: 100%;
+}
+
+.upvoteContainer p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.upvote,
+.downvote {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    display: flex;
+    background-color: gray;
+    rotate: 45deg;
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+}
+.upvote::after,
+.downvote::after {
+    background-color: white;
+    content: '';
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.25rem;
+    rotate: 45deg;
+}
+
+.upvote::after {
+    right: -0.15rem;
+    bottom: -0.15rem;
+}
+.downvote::after {
+    left: -0.15rem;
+    top: -0.15rem;
+}
+
+.red {
+    background-color: rgb(250, 73, 73);
+}
+.green {
+    background-color: rgb(11, 205, 11);
 }

@@ -47,7 +47,9 @@ a:hover::after {
 .boardTitle {
     font-size: 2rem;
     font-weight: bold;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-left: 0.85rem;
+    margin-bottom: 0.75rem;
 }
 
 .margin-top {
