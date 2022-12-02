@@ -8,6 +8,7 @@ import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
 import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
+import AddThreadButton from '../components/AddThreadButton';
 
 const DEFAULT_DATA = [
     {
@@ -59,34 +60,27 @@ export default function SchoolSpecificThread() {
     useEffect(() => {
         getSchoolThreads();
     }, [filters, school]);
-    const [navType, setNavType] = useState(3);
+    const [navType, setNavType] = useState(0);
     return (
         <>
-         <Navbar navType={navType} setNavType={setNavType} />
-        <Container>
-            <h1
-                style={{
-                    margin: '12px',
-                    fontFamily: 'Helvetica',
-                    flex: 'flex-start',
-                }}
-            >
-                {school}
-            </h1>
+            <Navbar navType={navType} setNavType={setNavType} />
+            <Container>
+                <h1 className="boardTitle">{school}</h1>
 
-            {!loading ? (
-                <>
-                    {Object.values(schoolThreads).map((thread, i) => {
-                        return <Thread threadInfo={thread} key={i} />;
-                    })}
-                    {!Object.values(schoolThreads).length && (
-                        <h2>No threads found.</h2>
-                    )}
-                </>
-            ) : (
-                <Loading />
-            )}
-        </Container>
+                {!loading ? (
+                    <>
+                        {Object.values(schoolThreads).map((thread, i) => {
+                            return <Thread threadInfo={thread} key={i} />;
+                        })}
+                        {!Object.values(schoolThreads).length && (
+                            <h2>No threads found.</h2>
+                        )}
+                        <AddThreadButton />
+                    </>
+                ) : (
+                    <Loading />
+                )}
+            </Container>
         </>
     );
 }
