@@ -58,7 +58,7 @@ export default function UserProfile({ props }) {
   function toggleEmail() {
       setEmailInput(!emailInput);
   }
-  const [navType, setNavType] = useState(2);
+  const [navType, setNavType] = useState(0);
   return (
     <div className="wholecontainer">
       <Navbar navType={navType} setNavType={setNavType} />
