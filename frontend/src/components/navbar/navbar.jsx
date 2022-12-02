@@ -17,7 +17,7 @@ const Navbar = ({ navType }) => {
         const pathArray = path.split('/');
         pathArray.pop();
         const newPath = pathArray.join('/');
-        navigate(newPath);
+        navigate(-1);
     };
 
     let navButton = null;
