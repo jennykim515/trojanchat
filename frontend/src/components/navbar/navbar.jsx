@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './navbar.css';
 import Logo from '../logo/logo';
 import { useApp } from '../../App';
@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 /*note: a tags will probably be replaced by routers or edited */
 
 const Navbar = ({ navType, setNavType }) => {
-    const { logOut, loggedIn } = useApp();
-    let navigate = useNavigate();
+    const { logOut } = useApp();
+    const { userId } = useApp();
+    const navigate = useNavigate();
+    const {} = useApp();
 
     const navigateOneLevelUp = () => {
         const path = window.location.pathname;
@@ -20,73 +22,141 @@ const Navbar = ({ navType, setNavType }) => {
         navigate(newPath);
     };
 
-    let navButton = null;
-    switch (navType) {
-        case 1:
-            navButton = (
-                <li
-                    onClick={() => {
-                        setNavType(0);
-                        navigate('/');
-                    }}
-                >
-                    <Button type="WHITE" text="Return to Homepage" />
-                </li>
-            );
-            break;
-        case 2:
-            navButton = (
-                <li
-                    onClick={() => {
-                        setNavType(0);
-                        navigateOneLevelUp();
-                    }}
-                >
-                    <Button type="WHITE" text="Return to Navigation" />
-                </li>
-            );
-            break;
-        case 3:
-            navButton = (
-                <li
-                    onClick={() => {
-                        setNavType(0);
-                        navigateOneLevelUp();
-                    }}
-                >
-                    <Button type="WHITE" text="Return to Board" />
-                </li>
-            );
-            break;
-        default:
-            break;
-    }
+    const logOut2 = () => {
+        logOut();
+        navigate('/login');
+    };
 
-    return (
-        <div className="navbarcontainer">
-            <div className="navbarleft">
-                <Logo />
-            </div>
-            <nav>
-                <ul>
-                    {navButton}
-                    <li>
-                        <a href="/profile">Profile</a>
-                    </li>
-                    {loggedIn && (
+    const login1 = () => {
+        navigate('/login');
+    };
+
+    // default
+    if (navType === 0) {
+        return (
+            <div className="navbarcontainer">
+                <div className="navbarleft">
+                    <Logo />
+                </div>
+                <nav>
+                    <ul>
                         <li>
-                            <button onClick={logOut}>Logout</button>
+                            <a href="/profile">Profile</a>
                         </li>
-                    )}
-                    {!loggedIn && (
+                        <li>
+                            {' '}
+                            {userId ? (
+                                <button onClick={() => logOut2()}>
+                                    Logout
+                                </button>
+                            ) : (
+                                <button onClick={() => login1()}>Login</button>
+                            )}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        );
+    }
+    // registration page (back to homepage)
+    else if (navType === 1) {
+        return (
+            <div className="navbarcontainer">
+                <div className="navbarleft">
+                    <Logo />
+                </div>
+                <nav>
+                    <ul>
+                        <li
+                            onClick={() => {
+                                setNavType(0);
+                                navigate('/');
+                            }}
+                        >
+                            <Button type="WHITE" text="Return to Homepage" />
+                        </li>
+                        <li>
+                            <a href="/profile">Profile</a>
+                        </li>
+                        <li>
+                            <button onClick={logOut2}>Logout</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        );
+    }
+    // Profile page
+    else if (navType === 2) {
+        return (
+            <div className="navbarcontainer">
+                <div className="navbarleft">
+                    <Logo />
+                </div>
+                <nav>
+                    <ul>
+                        <li
+                            onClick={() => {
+                                setNavType(0);
+                                navigateOneLevelUp();
+                            }}
+                        >
+                            <Button type="WHITE" text="Return to Navigation" />
+                        </li>
+                        <li id="profileB1">
+                            <a href="/profile">Profile</a>
+                        </li>
+                        <li id="logoutB1">
+                            <button onClick={logOut2}>Logout</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        );
+    }
+    // Comments page
+    else if (navType === 3) {
+        return (
+            <div className="navbarcontainer">
+                <div className="navbarleft">
+                    <Logo />
+                </div>
+                <nav>
+                    <ul>
+                        <li
+                            onClick={() => {
+                                setNavType(0);
+                                navigateOneLevelUp();
+                            }}
+                        >
+                            <Button type="WHITE" text="Return to Board" />
+                        </li>
+                        <li id="profileB1">
+                            <a href="/profile">Profile</a>
+                        </li>
+                        <li id="logoutB1">
+                            <button onClick={logOut2}>Logout</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        );
+    } else {
+        return (
+            <div className="navbarcontainer">
+                <div className="navbarleft">
+                    <Logo />
+                </div>
+                <nav>
+                    <ul>
                         <li>
                             <a href="/login">Login</a>
                         </li>
-                    )}
-                </ul>
-            </nav>
-        </div>
-    );
+                    </ul>
+                </nav>
+            </div>
+        );
+    }
 };
 
 const NavbarNoLinks = () => {

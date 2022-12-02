@@ -62,3 +62,12 @@ nav button:hover {
     background-color: #b15555;
     cursor: pointer;
 }
+
+
+#profileB1{
+    margin-top: 15px;
+}
+
+#logoutB1{
+    margin-top: 15px;
+}

@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
+import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
 import AddThreadButton from '../components/AddThreadButton';
 
@@ -59,11 +60,19 @@ export default function SchoolSpecificThread() {
     useEffect(() => {
         getSchoolThreads();
     }, [filters, school]);
-
+    const [navType, setNavType] = useState(3);
     return (
+        <>
+         <Navbar navType={navType} setNavType={setNavType} />
         <Container>
-            <h1 className="boardTitle">
-                {NAME_ALIASES[school.toLowerCase()] || school}
+            <h1
+                style={{
+                    margin: '12px',
+                    fontFamily: 'Helvetica',
+                    flex: 'flex-start',
+                }}
+            >
+                {school}
             </h1>
 
             {!loading ? (
@@ -80,5 +89,6 @@ export default function SchoolSpecificThread() {
                 <Loading />
             )}
         </Container>
+        </>
     );
 }

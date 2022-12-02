@@ -4,13 +4,13 @@ import Thread from '../components/Thread';
 import Container from '@mui/material/Container';
 import Button from '../components/buttons/buttons';
 import { useApp } from '../App';
+import Navbar from '../components/navbar/navbar';
 import Loading from '../components/Loading';
-
 /*
     Displays all of User's Threads
 */
 export default function UserThreads() {
-    const app = useApp();
+    const { apiGet, user } = useApp();
     const [threadData, setThreadData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,13 +22,12 @@ export default function UserThreads() {
         // [GET] api call to fetch info about other user's thread /account/posts
         // userName, title, timeCreated, comments
         const url = `/account/posts?id=${user.userId}`;
-        const { status, ...data } = await app.apiGet(url);
+        const { status, ...data } = await apiGet(url);
         if (status === 200) {
             setThreadData(data);
             setLoading(false);
         }
     };
-    const { user } = useContext(AppContext);
 
     return (
         <Container>

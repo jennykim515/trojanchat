@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import { useApp } from '../App';
 import AddComment from '../components/AddComment';
 import { AppContext } from '../App';
+import Navbar from '../components/navbar/navbar';
 
 /*
     Displays all comments of a particular thread
@@ -37,14 +38,8 @@ const DEFAULT_DATA = {
 export default function CommentList() {
     let { thread } = useParams();
     const { apiGet } = useApp();
-    const { setNavType } = useContext(AppContext);
-
-    useEffect(() => {
-        setNavType(3);
-    }, []);
 
     const [PostData, setPostData] = useState({});
-    console.log(PostData);
     const post = PostData.post;
     const comments = PostData.comments || [];
 
@@ -66,6 +61,7 @@ export default function CommentList() {
         }
     };
 
+    const [navType, setNavType] = useState(0);
     const addComment = (comment) => {
         setPostData({
             ...PostData,
@@ -76,24 +72,27 @@ export default function CommentList() {
     if (!post) return null;
 
     return (
-        <Container>
-            <h1 className="boardTitle">{post.content}</h1>
-            {comments &&
-                comments.map((comment, i) => {
-                    return (
-                        <div
-                            key={
-                                post.postId +
-                                comment.commenterUserName +
-                                comment.commentId
-                            }
-                        >
-                            <Comment commentInfo={comment} />
-                        </div>
-                    );
-                })}
-            <br></br>
-            <AddComment addComment={addComment} />
-        </Container>
+        <>
+            <Navbar navType={navType} setNavType={setNavType} />
+            <Container>
+                <h1 className="boardTitle">{post.content}</h1>
+                {comments &&
+                    comments.map((comment, i) => {
+                        return (
+                            <div
+                                key={
+                                    post.postId +
+                                    comment.commenterUserName +
+                                    comment.commentId
+                                }
+                            >
+                                <Comment commentInfo={comment} />
+                            </div>
+                        );
+                    })}
+                <br></br>
+                <AddComment addComment={addComment} />
+            </Container>
+        </>
     );
 }
