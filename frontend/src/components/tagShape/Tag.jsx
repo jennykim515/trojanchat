@@ -5,12 +5,13 @@ import { useApp } from '../../App';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
-export default function Tag(tagName){
+export default function Tag({props}){
 
-    
+    const tagName = props;
+
     return(
         <>
-            <Chip label={tagName} />
+            <Chip label={tagName} sx={{marginRight: '7px', marginLeft: '-3px'}} />
         </>
     ); 
 }
