@@ -11,6 +11,9 @@ public interface UserController extends MongoRepository<User, String> {
 	@Query("{userId:'?0'}")
 	User findUserById(String userId); 
 	
+	@Query("{username: :#{#username}}")
+	User findUserByUsername(@Param("username") String username);
+	
 	@Query("{username: :#{#username}, password: :#{#password}}")
 	User verifyUser(@Param("username") String username, @Param("password") String password);
 	
