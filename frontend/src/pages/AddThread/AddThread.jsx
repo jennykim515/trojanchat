@@ -19,6 +19,7 @@ export default function AddThreads({ props }) {
         e.preventDefault();
         setLoading(true);
 
+
         const { status, ...data } = await apiPost('/post/create', {
             content: titleInput,
             tags: tagInput.split(' '),
@@ -79,3 +80,4 @@ export default function AddThreads({ props }) {
         </Container>
     );
 }
+
