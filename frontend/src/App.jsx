@@ -110,41 +110,7 @@ function App() {
                 });
         }
     }, []);
-
-    return (
-        <AppContext.Provider
-            value={{
-                apiGet,
-                apiPost,
-                logIn,
-                loggedIn,
-                logOut,
-                user,
-                navType,
-                setNavType,
-            }}
-        >
-            <BrowserRouter>
-                {/* <Navbar navType={navType} setNavType={setNavType} /> */}
-                <Routes>
-                    <Route path="/login" element={<LogIn />}></Route>
-                    <Route path="/signup" element={<SignUp />}></Route>
-
-                    {/* If signed in */}
-                    <Route path="" element={<MainNavigation />} />
-                    <Route path="/:school" element={<SchoolSpecificThread />} />
-                    <Route path="/:school/:thread" element={<CommentList />} />
-
-                    <Route path={'/profile'} element={<UserProfile />}></Route>
-                    <Route path="/profile/mythreads" element={<ChatThread />} />
-                    <Route path={'/otheruser'} element={<OtherUser />}></Route>
-
-                    <Route path={'/addthread'} element={<AddThreads />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </AppContext.Provider>
-    );
-<<<<<<< HEAD
+    
     if (status === 200) {
       const { userId } = user;
       const newToken = `${username}+${password}`;
@@ -220,8 +186,6 @@ function App() {
       </BrowserRouter>
     </AppContext.Provider>
   );
-=======
->>>>>>> main
 }
 
 export default App;
