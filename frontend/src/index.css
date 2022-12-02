@@ -3,8 +3,8 @@
     font-family: Arial, Helvetica, sans-serif !important;
 }
 
-h1,
-h2 {
+h1::first-letter,
+h2::first-letter {
     text-transform: capitalize;
 }
 
@@ -48,4 +48,8 @@ a:hover::after {
     font-size: 2rem;
     font-weight: bold;
     margin: 2rem;
+}
+
+.margin-top {
+    margin-top: 2rem;
 }

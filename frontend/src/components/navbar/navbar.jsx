@@ -12,6 +12,14 @@ const Navbar = ({ navType, setNavType }) => {
     const { logOut, loggedIn } = useApp();
     let navigate = useNavigate();
 
+    const navigateOneLevelUp = () => {
+        const path = window.location.pathname;
+        const pathArray = path.split('/');
+        pathArray.pop();
+        const newPath = pathArray.join('/');
+        navigate(newPath);
+    };
+
     let navButton = null;
     switch (navType) {
         case 1:
@@ -31,7 +39,7 @@ const Navbar = ({ navType, setNavType }) => {
                 <li
                     onClick={() => {
                         setNavType(0);
-                        navigate(-1);
+                        navigateOneLevelUp();
                     }}
                 >
                     <Button type="WHITE" text="Return to Navigation" />
@@ -43,7 +51,7 @@ const Navbar = ({ navType, setNavType }) => {
                 <li
                     onClick={() => {
                         setNavType(0);
-                        navigate(-1);
+                        navigateOneLevelUp();
                     }}
                 >
                     <Button type="WHITE" text="Return to Board" />

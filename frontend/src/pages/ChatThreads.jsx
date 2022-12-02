@@ -21,7 +21,7 @@ export default function UserThreads() {
     const getThreadData = async () => {
         // [GET] api call to fetch info about other user's thread /account/posts
         // userName, title, timeCreated, comments
-        const url = `/account/posts?id=${user.id}`;
+        const url = `/account/posts?id=${user.userId}`;
         const { status, ...data } = await app.apiGet(url);
         if (status === 200) {
             setThreadData(data);
@@ -39,7 +39,9 @@ export default function UserThreads() {
                     alignItems: 'center',
                 }}
             >
-                <h1 className="boardTitle">{user.name || user.id}'s Threads</h1>
+                <h1 className="boardTitle">
+                    {user.username || user.userId}'s Threads
+                </h1>
                 <Button type="RED" text="Return to Profile" />
             </div>
 

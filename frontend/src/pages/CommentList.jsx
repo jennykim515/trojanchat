@@ -44,6 +44,7 @@ export default function CommentList() {
     }, []);
 
     const [PostData, setPostData] = useState({});
+    console.log(PostData);
     const post = PostData.post;
     const comments = PostData.comments || [];
 
@@ -65,6 +66,13 @@ export default function CommentList() {
         }
     };
 
+    const addComment = (comment) => {
+        setPostData({
+            ...PostData,
+            comments: [...comments, comment],
+        });
+    };
+
     if (!post) return null;
 
     return (
@@ -72,7 +80,6 @@ export default function CommentList() {
             <h1 className="boardTitle">{post.content}</h1>
             {comments &&
                 comments.map((comment, i) => {
-                    console.log(comment);
                     return (
                         <div
                             key={
@@ -86,7 +93,7 @@ export default function CommentList() {
                     );
                 })}
             <br></br>
-            <AddComment />
+            <AddComment addComment={addComment} />
         </Container>
     );
 }

@@ -7,6 +7,7 @@ import { useApp } from '../App';
 import { __DEV__ } from '../utils/network';
 import Button from '../components/buttons/buttons';
 import Loading from '../components/Loading';
+import AddThreadButton from '../components/AddThreadButton';
 
 const DEFAULT_DATA = [
     {
@@ -73,6 +74,7 @@ export default function SchoolSpecificThread() {
                     {!Object.values(schoolThreads).length && (
                         <h2>No threads found.</h2>
                     )}
+                    <AddThreadButton />
                 </>
             ) : (
                 <Loading />
