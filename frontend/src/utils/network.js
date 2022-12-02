@@ -84,3 +84,30 @@ export const internal_apiPost = async (
         };
     }
 };
+
+export const internal_apiPut = async (
+    path,
+    body,
+    userId = '',
+    uid = '',
+    options = {}
+) => {
+    try {
+        const url = constructUrl(path, { userId, uid });
+        const response = await fetch(url, {
+            ...options,
+            method: 'PUT',
+            body: JSON.stringify(body),
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        return await processResponse(response);
+    } catch (error) {
+        return {
+            error: 'Connection error',
+            status: 500,
+        };
+    }
+};
