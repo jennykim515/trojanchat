@@ -2,6 +2,7 @@ import Card from '@mui/material/Card';
 import { CardActionArea } from '@mui/material';
 import './Thread.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Tag from './tagShape/Tag';
 
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
@@ -20,6 +21,13 @@ const Thread = (props) => {
                 <div className="threads-container">
                     <div className="thread-card-top">
                         <h2>{threadinfo.content}</h2>
+
+                        <div className="tagcontainer">
+                            {threadinfo.tags.map((tag, i) => {
+                                return(<Tag key={i} props={tag} />)
+                                console.log(tag)
+                            })}
+                        </div>
                     </div>
                     <div className="thread-card-bottom">
                         <div className="bottom-left">
@@ -27,7 +35,7 @@ const Thread = (props) => {
                             <p>by {threadinfo.userName || threadinfo.userId}</p>
                         </div>
                         <div className="bottom-right">
-                            <p>Time: {threadinfo.timestamp}</p>
+                            <p>Time: {threadinfo.timestamp}</p> 
                         </div>
                     </div>
                 </div>

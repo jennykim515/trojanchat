@@ -10,16 +10,20 @@
 }
 
 .thread-card-top{
-    margin: 10px 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 20px;
 }
 
 .thread-card-bottom{
     display: flex;
-      padding-top: 2px;
-      flex-direction: row;
-      justify-content: space-between;
-      margin: 0 20px 10px;
-      flex: 1px;
+    padding-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: -15px 20px 10px;
+
+    flex: 1px;
 }
 
 .bottom-left{
@@ -34,4 +38,10 @@
 
 p {
     font-size: 17px;
+    flex-direction: row;
+    display: inline-block;
+}
+
+h2{
+    display: inline-block;
 }
