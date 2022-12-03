@@ -117,7 +117,7 @@ export default function SchoolSpecificThread() {
                         />
                     </div>
                     <div className="right">
-                        <AddThreadButton />
+                        <AddThreadButton school = {school}/>
                     </div>
                 </div>
                 {!loading ? (

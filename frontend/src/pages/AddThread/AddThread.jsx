@@ -13,8 +13,6 @@ export default function AddThreads({props}) {
 
     const navigate = useNavigate();
     let { school } = useParams();
-    const [schools, setSchools] = useState([]);
-    const [loading, setLoading] = useState(true);
     const { apiPost, user, token, userId, apiGet } = useApp();
     const [titleInput, setTitleInput] = useState(""); 
     const [tagInput, setTagInput] = useState(""); 
@@ -30,16 +28,19 @@ export default function AddThreads({props}) {
         upvotes: 1,
         userId: user.userId,
     });
-    if (status === 200) {
-        //window.location = `/all/${data.postId}`;
-        navigate(`/${"/" + school}`);
-    } else {
-        alert('Error creating thread');
-    }
+
+    console.log("status", status);
+
+        if (status === 200) {
+          window.location = "https://www.google.com/";
+          //navigate("addthread");
+          } else {
+          alert('Error creating thread');
+        }
     }
 
     useEffect(()=>{
-      console.log(user, token, userId);
+      console.log(user, token, userId, school);
   
       //user.id
       fetch('https://trojanchat.wl.r.appspot.com/api/account/view?id=' + user.id)
@@ -48,7 +49,7 @@ export default function AddThreads({props}) {
         console.log(data)
       })
   
-     },[])
+     },[school]);
 
   
     const [navType, setNavType] = useState(2);
@@ -56,23 +57,23 @@ export default function AddThreads({props}) {
 return (
       <div id = "Info">
       <Navbar navType={navType} setNavType={setNavType} />
-      <h1 id = "title"> Create New Thread in USC - {school}</h1>
-      <form onSubmit={formHandler}>
+      <h1> Create Thread in USC - {school}</h1>
+      <form id = "threadInfo" onSubmit={formHandler}>
         <fieldset>
-          <label id="title">Titles: </label>
-          <input 
+          <label id="threadTitle">Title: </label>
+          <input id="titleInput"
                         type="text" 
                         value={titleInput} 
                         onChange={(e) => setTitleInput(e.target.value)} 
-                        marginBottom="10px"/>
+                       />
         </fieldset>
         <fieldset>
-          <label >Tag: </label>
-          <input 
+          <label id = "tagTitle">Tag: </label>
+          <input id = "tagInput"
                         type="text" 
                         value={tagInput} 
                         onChange={(e) => setTagInput(e.target.value)} 
-                        marginBottom="10px"/>
+                        />
         </fieldset>
         <fieldset>
           <label >Body: </label>
@@ -80,7 +81,7 @@ return (
                         type="text" 
                         value={bodyInput} 
                         onChange={(e) => setBodyInput(e.target.value)} 
-                        marginBottom="10px"/>
+                        />
         </fieldset>
         <fieldset>
         <button className="btn" type="submit">Save Changes</button>

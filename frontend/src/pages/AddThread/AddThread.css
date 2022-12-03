@@ -1,60 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
-fieldset {
-  text-align: left;
-  border: none;
-  padding: 5px 0px;
-  margin-top: 12px;
-  margin-top: 12px;
-  margin-bottom: auto;
-  font-size: 30px;
-}
-
-.title{
+h1{
+  text-align: center;
   font-size: 50px;
-  background-color: #ffd25f;
-  padding: 0px;
-  text-align: center;
+  margin-top: 20px;
 }
 
-.header{
-  font-size: 23px;
+#threadTitle{
+  font-size: 40px;
+  margin-left: 100px;
 }
 
-input{
-  border: solid 3px #6A1F1F;  
-  font-size: 25px;
+#titleInput{
+    align-items: right;
+    flex-direction:column;
+    width: 30vw;
+    padding: 5;
+    border-style: solid;
+    border-width: 1;
+    border-radius:  5;
 }
 
-label{
-  min-width: 100px;
+#tagTitle{
+  font-size: 40px;
+  margin-left: 800px;
+  margin-top: -100px;
 }
 
-.btn{
-  background-color: #6A1F1F;
-  padding: 10px;
-  min-width: 200px;
-  min-height: 70px;
-  border-radius: 10px;
-  display: inline-block;
-  color: white;
-  font-weight: bold;
-  margin-bottom: -30px;
-  margin-top: 0px;
-  font-size: 17px;
-}
+#tagInput{
+   align-items: right;
+    flex-direction:column;
+    width: 30vw;
+    padding: 5;
+    border-style: solid;
+    border-width: 1;
+    border-radius:  5;
 
-.center{
-  text-align: center;
-  width: 100%;
-}
-
-#Writing{
-  margin: auto;
-  width: 70%;
-  padding: 10px;
-  text-align: center;
-  border: 10px solid #6A1F1F;
-  zoom: 1.2;
-  margin-top: 10px;
 }
