@@ -1,5 +1,7 @@
 package trojanchat.backend.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,9 +15,9 @@ public class User {
 	private String password;
 	private String major;
 	private int graduationYear;
-	private String[] posts;
+	private List<String> posts;
 	
-	public User(String userId, String username, String email, String password, String major, int graduationYear, String[] posts) {
+	public User(String userId, String username, String email, String password, String major, int graduationYear, List<String> posts) {
 		super();
 		this.userId=userId;
 		this.username=username;
@@ -74,11 +76,25 @@ public class User {
 		this.graduationYear = graduationYear;
 	}
 
-	public String[] getPosts() {
+	public List<String> getPosts() {
 		return posts;
 	}
 
-	public void setNumPosts(String[] posts) {
+	public void setPosts(List<String> posts) {
 		this.posts = posts;
+	}
+
+	public void addPost(String post) {
+		if(getPosts().contains(post)) {
+			return;
+		}
+		getPosts().add(post);
+	}
+	
+	public void removePost(String post) {
+		if(!getPosts().contains(post)) {
+			return;
+		}
+		getPosts().remove(post);
 	}
 }
