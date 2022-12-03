@@ -100,7 +100,7 @@ export const internal_apiPut = async (
             body: JSON.stringify(body),
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
             },
         });
         return await processResponse(response);

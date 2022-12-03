@@ -132,6 +132,7 @@ function App() {
             value={{
                 apiGet,
                 apiPost,
+                apiPut,
                 logIn,
                 loggedIn,
                 logOut,
