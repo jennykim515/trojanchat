@@ -2,7 +2,7 @@ import React from 'react';
 import { useApp } from '../App';
 import Button from './buttons/buttons';
 
-export default function AddThreadButton() {
+export default function AddThreadButton({school}) {
     const { loggedIn } = useApp();
 
     if (!loggedIn) {
@@ -16,8 +16,8 @@ export default function AddThreadButton() {
     }
 
     return (
-        <Button onClick={() => (window.location = '/addthread')} type="RED">
+        <Button onClick={() => (window.location = '/addthread/' + school)} type="RED">
             Create Thread
-        </Button>
+         </Button>
     );
 }
