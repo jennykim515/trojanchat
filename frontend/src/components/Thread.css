@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.thread-card-top{
+.thread-card-top {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,6 +24,19 @@
     flex-direction: row;
     justify-content: space-between;
     margin: -15px 20px 10px;
+}
+
+.thread-card-bottom button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 0.2rem;
+    color: #6a1f1f;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0.4rem;
+}
+.thread-card-bottom button:hover:enabled {
+    background-color: #ffd25f;
+    cursor: pointer;
 }
 
 .bottom-left {

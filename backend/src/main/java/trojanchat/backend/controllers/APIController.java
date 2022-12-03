@@ -164,6 +164,7 @@ public class APIController {
 					String[] filters = filter.split(",");
 					Set<String> queryIds = new HashSet<>();
 
+					
 					ForkJoinPool pool = new ForkJoinPool();
 					FilterThread[] threads = new FilterThread[filters.length];
 					for (String tag : filters) {
