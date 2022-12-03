@@ -59,7 +59,8 @@ return (
       <Navbar navType={navType} setNavType={setNavType} />
       <h1> Create Thread in USC - {school}</h1>
       <form id = "threadInfo" onSubmit={formHandler}>
-        <fieldset>
+        <div className="row">
+        <fieldset className="left">
           <label id="threadTitle">Title: </label>
           <input id="titleInput"
                         type="text" 
@@ -67,7 +68,7 @@ return (
                         onChange={(e) => setTitleInput(e.target.value)} 
                        />
         </fieldset>
-        <fieldset>
+        <fieldset className="right">
           <label id = "tagTitle">Tag: </label>
           <input id = "tagInput"
                         type="text" 
@@ -75,16 +76,20 @@ return (
                         onChange={(e) => setTagInput(e.target.value)} 
                         />
         </fieldset>
-        <fieldset>
+        </div>
+        <fieldset className="txtbody">
           <label >Body: </label>
-          <input 
+          <textarea 
                         type="text" 
                         value={bodyInput} 
                         onChange={(e) => setBodyInput(e.target.value)} 
+                        rows="20"
+                        cols="140"
+                        
                         />
         </fieldset>
-        <fieldset>
-        <button className="btn" type="submit">Save Changes</button>
+        <fieldset className="buttonGroup">
+        <button className="btn10" type="submit">Save Changes</button>
         </fieldset>
      </form>
       <br/>
