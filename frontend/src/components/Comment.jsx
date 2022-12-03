@@ -12,9 +12,9 @@ const Comment = (props) => {
                     <p>{commentinfo.content}</p>
                 </div>
                 <div className="comment-card-bottom">
-                        {' '}
-                        <p>by {commentinfo.userId}</p>
-                        <p>{commentinfo.timestamp}</p>
+                    {' '}
+                    <p>by {commentinfo.userId || 'Anonymous'}</p>
+                    <p>{commentinfo.timestamp}</p>
                 </div>
             </div>
         </Card>

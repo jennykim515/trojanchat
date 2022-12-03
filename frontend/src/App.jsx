@@ -154,7 +154,7 @@ function App() {
 
                     <Route path={'/profile'} element={<UserProfile />}></Route>
                     <Route path="/profile/mythreads" element={<ChatThread />} />
-                    <Route path={'/otheruser'} element={<OtherUser />}></Route>
+                    <Route path={'/user/:userId'} element={<OtherUser />}></Route>
 
                     <Route path={'/addthread/:school'} element={<AddThread />}></Route>
                 </Routes>

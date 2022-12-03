@@ -6,6 +6,7 @@ import Upvote from './Upvote';
 import { useState } from 'react';
 import { useApp } from '../App';
 import Tag from './tagShape/Tag';
+import { getTimestamp } from '../utils/time';
 
 // props: title, userName, timeCreated, comments
 const Thread = (props) => {
@@ -17,11 +18,20 @@ const Thread = (props) => {
 
     const [votes, setVotes] = useState({});
     const sendVoteCallback = async (postId, numVotes) => {
-        setVotes(oldVotes=>({
+        setVotes((oldVotes) => ({
             ...oldVotes,
-            [postId]: Number(oldVotes[postId]||0)+numVotes
+            [postId]: Number(oldVotes[postId] || 0) + numVotes,
         }));
-    }
+    };
+
+    const time = Number(threadinfo.timestamp)
+        ? getTimestamp(Number(threadinfo.timestamp))
+        : threadinfo.timestamp;
+
+    const viewUser = (e) => {
+        e.stopPropagation();
+        navigate(`/user/${threadinfo.userId}`);
+    };
 
     return (
         <Card variant="outlined">
@@ -31,27 +41,37 @@ const Thread = (props) => {
                 }}
             >
                 <div className="threads-container">
-                    <Upvote post={threadinfo} votes={votes} sendVoteCallback={sendVoteCallback} />
-                    <div className='threads-text'>
-                    <div className="thread-card-top">
-                        <h2>{threadinfo.content}</h2>
+                    <Upvote
+                        post={threadinfo}
+                        votes={votes}
+                        sendVoteCallback={sendVoteCallback}
+                    />
+                    <div className="threads-text">
+                        <div className="thread-card-top">
+                            <h2>{threadinfo.content || '*discussion*'}</h2>
 
-                        <div className="tagcontainer">
-                            {threadinfo.tags.map((tag, i) => {
-                                return(<Tag key={i} props={tag} />)
-                                console.log(tag)
-                            })}
+                            <div className="tagcontainer">
+                                {threadinfo.tags.map((tag, i) => {
+                                    return <Tag key={i} props={tag} />;
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className="thread-card-bottom">
-                        <div className="bottom-left">
-                            {' '}
-                            <p>by {threadinfo.userName || threadinfo.userId}</p>
+                        <div className="thread-card-bottom">
+                            <button
+                                className="bottom-left"
+                                onClick={viewUser}
+                                enabled={Boolean(threadinfo.userName)}
+                            >
+                                {' '}
+                                <p>
+                                    by{' '}
+                                    {threadinfo.userName || threadinfo.userId}
+                                </p>
+                            </button>
+                            <div className="bottom-right">
+                                <p>Time: {time}</p>
+                            </div>
                         </div>
-                        <div className="bottom-right">
-                            <p>Time: {threadinfo.timestamp}</p> 
-                        </div>
-                    </div>
                     </div>
                 </div>
             </CardActionArea>
