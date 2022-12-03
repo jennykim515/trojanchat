@@ -7,7 +7,7 @@ import { useApp } from '../../App';
 import { AppContext } from '../../App';
 
 export default function UserProfile({ props }) {
-    const { apiPost, user, token, userId, apiPut } = useApp();
+    const { apiPost, apiPut, user, token, userId } = useApp();
     // const { setNavType } = useContext(AppContext)
     const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
     const [emailValue, setEmail] = useState(user.email);
@@ -39,9 +39,10 @@ export default function UserProfile({ props }) {
         e.preventDefault();
 
         const { status } = await apiPut('/account/update', {
+            ...user,
             email: emailValue,
             major: majorValue,
-            graduation: gradValue,
+            graduationYear: gradValue,
             username: usernameValue,
         });
 
