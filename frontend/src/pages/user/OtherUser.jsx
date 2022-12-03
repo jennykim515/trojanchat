@@ -10,13 +10,13 @@ import '../user/OtherUser.css';
 export default function UserProfile({ props }) {
     let { userId } = useParams();
 
-    const { apiPost, user, token } = useApp();
+    const { apiPost, token } = useApp();
 
     const [emailInput, setEmailInput] = useState(true); //thi shide/show inputfield
-    const [emailValue, setEmail] = useState(user.email);
-    const [majorValue, setMajor] = useState(user.major);
-    const [gradValue, setGrad] = useState(user.graduationYear);
-    const [usernameValue, setUsername] = useState(user.username);
+    const [emailValue, setEmail] = useState('');
+    const [majorValue, setMajor] = useState('');
+    const [gradValue, setGrad] = useState('');
+    const [usernameValue, setUsername] = useState('');
 
     const navigate = useNavigate();
 
@@ -24,11 +24,8 @@ export default function UserProfile({ props }) {
     const USER_ID = 'userID';
 
     useEffect(() => {
-        console.log(user, token, userId);
-
-        //user.id
         fetch(
-            'https://trojanchat.wl.r.appspot.com/api/account/view?id=' + user.id
+            'https://trojanchat.wl.r.appspot.com/api/account/view?id=' + userId
         )
             .then((response) => response.json())
             .then((data) => {
