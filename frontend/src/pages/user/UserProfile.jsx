@@ -15,25 +15,12 @@ export default function UserProfile({ props }) {
     const [gradValue, setGrad] = useState(user.graduationYear);
     const [usernameValue, setUsername] = useState(user.username);
 
-    const TOKEN_KEY = 'chatToken';
-    const USER_ID = 'userID';
-
     useEffect(() => {
-        console.log(user, token, userId);
-
-        //user.id
-        fetch(
-            'https://trojanchat.wl.r.appspot.com/api/account/view?id=' + user.id
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                setEmail(data.email);
-                setMajor(data.major);
-                setGrad(data.graduationYear);
-                setUsername(data.username);
-                console.log(data);
-            });
-    }, []);
+        setEmail(user.email);
+        setMajor(user.major);
+        setGrad(user.graduationYear);
+        setUsername(user.username);
+    }, [user]);
 
     const formHandler = async (e) => {
         e.preventDefault();

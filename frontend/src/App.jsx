@@ -33,7 +33,7 @@ const USER_ID = 'userID';
 function App() {
     const [token, setToken] = useState(localStorage.getItem(TOKEN_KEY) || '');
     const [userId, setUserId] = useState(localStorage.getItem(USER_ID) || '');
-    const [user, setUser] = useState({ id: 'uuidHere' });
+    const [user, setUser] = useState({});
     const type = {
         Default: 0,
         Registration: 1,
@@ -104,7 +104,7 @@ function App() {
 
     // Log out the user
     const logOut = () => {
-        apiPost('/auth/logout');
+        //apiPost('/auth/logout');
         localStorage.removeItem(TOKEN_KEY);
         setToken('');
         setUser(null);
@@ -115,10 +115,10 @@ function App() {
     useEffect(() => {
         if (loggedIn) {
             apiGet(`/account/view?id=${userId}`)
-                .then(({ status, ...user }) => {
+                .then(({ status, ...newUser }) => {
                     if (status !== 200) throw new Error('Failed to fetch user');
-                    setUser(user);
-                    console.log(user);
+                    setUser(newUser);
+                    console.log(newUser);
                 })
                 .catch((e) => {
                     console.error(e);
@@ -154,9 +154,15 @@ function App() {
 
                     <Route path={'/profile'} element={<UserProfile />}></Route>
                     <Route path="/profile/mythreads" element={<ChatThread />} />
-                    <Route path={'/user/:userId'} element={<OtherUser />}></Route>
+                    <Route
+                        path={'/user/:userId'}
+                        element={<OtherUser />}
+                    ></Route>
 
-                    <Route path={'/addthread/:school'} element={<AddThread />}></Route>
+                    <Route
+                        path={'/addthread/:school'}
+                        element={<AddThread />}
+                    ></Route>
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>

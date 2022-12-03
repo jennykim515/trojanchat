@@ -24,18 +24,21 @@ export default function AddComment({ addComment }) {
 
     const sendComment = async () => {
         const timestamp = getTimestamp();
+        console.log(user);
         const { status, ...data } = await apiPost('/comment/create', {
             postId,
             content: comment,
             timestamp,
             commentId: uuidv4(),
-            userId: user.username,
+            userId: user.userId,
         });
+        console.log(data, status);
         if (status === 200) {
             setComment('');
             addComment(data);
         } else {
             alert('Error adding comment');
+            //window.reload();
         }
     };
 
@@ -56,7 +59,10 @@ export default function AddComment({ addComment }) {
                         <Button
                             type="RED"
                             text="Post Comment"
-                            onClick={sendComment}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                sendComment();
+                            }}
                         />
                     </Grid>
                 </Grid>
